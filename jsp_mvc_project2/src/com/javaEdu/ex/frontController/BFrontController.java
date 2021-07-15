@@ -18,6 +18,7 @@ import com.javaEdu.ex.command.board.BReplyCommand;
 import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
 import com.javaEdu.ex.command.member.MPrintAll;
+import com.javaEdu.ex.command.regist.DRegistCommand;
 
 @WebServlet("*.do")
 public class BFrontController extends HttpServlet {
@@ -45,51 +46,64 @@ public class BFrontController extends HttpServlet {
 		String viewPage = null;
 		Command command = null;
 		
-		String uri = request.getRequestURI();
-		String conPath = request.getContextPath();
-		String com = uri.substring(conPath.length());
+//		String uri = request.getRequestURI();
+//		String conPath = request.getContextPath();
+//		String com = uri.substring(conPath.length());
 		
-		if(com.equals("/board/write_view.do")) {
-			viewPage = "write_view.jsp";
-		} else if (com.equals("/board/write.do")) {
+		String uri[] = request.getRequestURI().split("/");
+		String com = uri[uri.length-1];
+		System.out.println(com);
+		
+		if(com.equals("write_view.do")) {
+			viewPage = "/board/write_view.jsp";
+		} else if (com.equals("write.do")) {
 			command = new BWriteCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
-		} else if (com.equals("/board/list.do")) {
+		} else if (com.equals("list.do")) {
 			command = new BListCommand();
 			command.execute(request, response);
-			viewPage = "list.jsp";
-		} else if (com.equals("/board/content_view.do")) {
+			viewPage = "/board/list.jsp";
+		} else if (com.equals("content_view.do")) {
 			command = new BContentCommand();
 			command.execute(request,response);
-			viewPage = "content_view.jsp";
-		} else if (com.equals("/board/modify.do")) {
+			viewPage = "/board/content_view.jsp";
+		} else if (com.equals("modify.do")) {
 			command = new BModifyCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
-		} else if (com.equals("/board/delete.do")) {
+		} else if (com.equals("delete.do")) {
 			command = new BDeleteCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
-		} else if (com.equals("/board/reply.do")) {
+		} else if (com.equals("reply.do")) {
 			command = new BReplyCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
-		} else if (com.equals("/board/reply_view.do")) {
+		} else if (com.equals("reply_view.do")) {
 			command = new BReplyViewCommand();
 			command.execute(request, response);
-			viewPage = "reply_view.jsp";
+			viewPage = "/board/reply_view.jsp";
 		}
 		
-		if(com.equals("/member/membersAll.do")) {
+//------------------멤버 -----------------------
+		if(com.equals("membersAll.do")) {
 			command = new MPrintAll();
 			command.execute(request, response);
-			viewPage = "membersAll.jsp";
+			viewPage = "/member/membersAll.jsp";
+		}
+		
+//------------------디바이스---------------------
+		
+		if(com.equals("regist.do")) {
+			command = new DRegistCommand();
+			command.execute(request, response);
+			viewPage = "list.do";
 		}
 		
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
-		}
+	}
 }

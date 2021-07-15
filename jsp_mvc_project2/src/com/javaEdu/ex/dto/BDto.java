@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 
 public class BDto {
 	
-	int bId;
-	String bName;
-	String bTitle;
-	String bContent;
-	Timestamp bDate;
-	int bHit;
-	int bGroup;
-	int bStep;
-	int bIndent;
+	private int bId;
+	private String bName;
+	private String bTitle;
+	private String bContent;
+	private Timestamp bDate;
+	private int bHit;
+	private int bGroup;
+	private int bStep;
+	private int bIndent;
 	
 	public BDto() {
 		

@@ -3,10 +3,9 @@
 <%
 	if(session.getAttribute("ValidMem") == null){
 %>
-	<<jsp:forward page = "login.jsp"/>
+	<jsp:forward page = "login.jsp"/>
 <%
 	}
-
 	String name = (String)session.getAttribute("name");
 	String id = (String) session.getAttribute("id");
 %>
@@ -23,6 +22,7 @@
 		<input type = "submit" value = "로그아웃">&nbsp;&nbsp;&nbsp;
 		<input type = "button" value = "정보수정" onclick = "javascript:window.location='modify.jsp'">
 		<a href = "membersAll.do">모든 회원 정보보기</a>
+		<a href = "regist_view.do">기기 등록</a>
 	</form>
 	
 </body>

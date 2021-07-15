@@ -22,7 +22,7 @@
 	<form action = "logout.jsp" method = "post">
 		<input type = "submit" value = "로그아웃">&nbsp;&nbsp;&nbsp;
 		<input type = "button" value = "정보수정" onclick = "javascript:window.location='modify.jsp'">
-		<input type = "button" value = "정보보기" onclick = "javascript:window.location='membersAll.jsp'">
+		<a href = "membersAll.do">모든 회원 정보보기</a>
 	</form>
 	
 </body>

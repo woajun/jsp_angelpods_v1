@@ -1,12 +1,12 @@
 <%@ page import = "java.sql.Timestamp" %>
-<%@ page import = "com.javaEdu.ex.MemberDao" %>
+<%@ page import = "com.javaEdu.ex.dao.MemberDao" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");	
 %>
 <!-- import 안해도 되나벼? -->
-<jsp:useBean id="dto" class = "com.javaEdu.ex.MemberDto"/> 
+<jsp:useBean id="dto" class = "com.javaEdu.ex.dto.MemberDto"/> 
 <jsp:setProperty name ="dto" property = "*" />
 <%
 	dto.setrDate(new Timestamp(System.currentTimeMillis()));

@@ -12,7 +12,7 @@
        	<label>모델명</label>
         <select id="myselection" class="form-control" name = "model">
           <option value="Zero">모델 선택</option>
-          <option value="One">에어팟 프로</option>
+          <option value="One">에어팟 프로</optzion>
           <option value="Two">에어팟</option>
           <option value="Three">삼성 버즈</option>
         </select>

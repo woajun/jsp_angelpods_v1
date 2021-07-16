@@ -5,7 +5,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");	
 %>
-<!-- import 안해도 되나벼? -->
 <jsp:useBean id="dto" class = "com.javaEdu.ex.dto.MemberDto"/> 
 <jsp:setProperty name ="dto" property = "*" />
 <%

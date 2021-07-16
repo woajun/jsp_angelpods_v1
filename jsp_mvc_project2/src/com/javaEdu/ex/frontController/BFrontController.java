@@ -18,6 +18,7 @@ import com.javaEdu.ex.command.board.BReplyCommand;
 import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
 import com.javaEdu.ex.command.member.MJoinCommand;
+import com.javaEdu.ex.command.member.MLoginCommand;
 import com.javaEdu.ex.command.member.MPrintAll;
 import com.javaEdu.ex.command.regist.DRegistCommand;
 
@@ -96,6 +97,10 @@ public class BFrontController extends HttpServlet {
 			command = new MJoinCommand();
 			command.execute(request, response);
 			viewPage = "/member/login.jsp";
+		} else if (com.equals("login.do")) {
+			command = new MLoginCommand();
+			command.execute(request, response);
+			viewPage = "/member/main.jsp";
 		}
 		
 //------------------디바이스---------------------

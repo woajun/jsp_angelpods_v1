@@ -3,6 +3,9 @@
 <%
 	if(session.getAttribute("ValidMem") == null){
 %>
+	<script>
+	if('${alert}' != null){alert('${alert}');}
+	</script>
 	<jsp:forward page = "login.jsp"/>
 <%
 	}

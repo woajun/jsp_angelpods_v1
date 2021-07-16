@@ -8,12 +8,6 @@
 <script language = "JavaScript" src = "members.js"></script>
 </head>
 <body>
-
-    <script>
-        "infoJoined()"
-    </script>
-
-
 	<form action = "join.do" method = "post" name = "reg_frm">
 		아이디 : <input type = "text" name = "id" size = "20"><br/>
 		비밀번호 : <input type = "password" name = "pw" size ="20"><br/>

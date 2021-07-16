@@ -11,12 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script>
-	if('${alert}' != null){alert('${alert}');}
-	</script>
 	
-	<form action = "loginOk.jsp" method = "post">
-		<%-- 아이디 : <input type = "text" name = "id" value="<% if(session.getAttribute("id") != null) out.println(session.getAttribute("id")); %>"> <br/> --%>
+	<form action = "login.do" method = "post">
 		아이디 : <input type = "text" name = "id" value="${id}"> <br/>
 		비밀번호 : <input type = "password" name = "pw" ><br/>
 		<input type = "submit" value="로그인"> &nbsp; &nbsp;

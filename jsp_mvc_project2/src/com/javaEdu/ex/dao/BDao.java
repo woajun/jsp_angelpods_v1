@@ -150,7 +150,6 @@ public class BDao {
 			String query = "update mvc_board set bHit = bHit +1 where bId = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, bId);
-			
 			preparedStatement.executeUpdate();
 			
 		} catch (Exception e) {

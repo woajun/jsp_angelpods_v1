@@ -31,11 +31,6 @@ public class MemberDao {
 		ResultSet set = null;
 		String query = "select pw from members where id = ?";
 		
-		if (id == "") {
-			ri = 1;
-			return ri;
-		}
-		
 		try {
 			connection = getConnection();
 			pstmt = connection.prepareStatement(query);

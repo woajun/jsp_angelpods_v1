@@ -96,7 +96,7 @@ public class BFrontController extends HttpServlet {
 		} else if (com.equals("join.do")) {
 			command = new MJoinCommand();
 			command.execute(request, response);
-			viewPage = "/member/login.jsp";
+			viewPage = "/member/joinOk.jsp";
 		} else if (com.equals("login.do")) {
 			command = new MLoginCommand();
 			command.execute(request, response);

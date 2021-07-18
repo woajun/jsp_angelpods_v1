@@ -27,16 +27,21 @@ public class MJoinCommand implements Command {
 		dto.seteMail(eMail);
 		dto.setAddress(address);
 		
+		
+		int ri = 0;
 		if(dao.confirmId(dto.getId()) == 1){
-			request.setAttribute("alert", "아이디가 이미 존재 합니다.");
+			ri = 1;
 		} else {
-			int ri = dao.insertMember(dto);
-			if(ri == 1) {
+			int ri2 = dao.insertMember(dto);
+			if(ri2 == 1) {
 				request.setAttribute("id", dto.getId());
-				request.setAttribute("alert", "회원 가입에 성공 했습니다.");
+				ri = 2;
 			} else {
-				request.setAttribute("alert", "회원 가입에 실패 했습니다.");
+				ri = 0;
 			}
 		}
+		
+		request.setAttribute("ri", ri);
+		
 	}
 }

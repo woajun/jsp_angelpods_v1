@@ -18,11 +18,11 @@ public class MLoginCommand implements Command {
 //		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-//		
+		
 		MemberDao dao = MemberDao.getInstance();
 		int checkNum = dao.userCheck(id, pw);
+		
 		response.setContentType("text/html; charset=UTF-8"); 
-//		
 		try {
 			PrintWriter writer;
 			writer = response.getWriter();
@@ -44,7 +44,7 @@ public class MLoginCommand implements Command {
 					writer.println("<script>alert('환영합니다!'); location.href='main.jsp';</script>");
 				}
 			}
-			writer.close();
+//			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 

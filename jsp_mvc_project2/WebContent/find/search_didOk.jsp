@@ -15,7 +15,7 @@
 <% } else if(ri == 0){ %>
 
    	<script language = "javascript">
-   		alert("해당 일련번호로 등록된 기기가 없습니다. 게시글 등록 부탁드립니다.");
+   		alert("해당 일련번호(${dId})로 등록된 기기가 없습니다. 게시글 등록 부탁드립니다.");
    		document.location.href="write_view.jsp";
    	</script>
     	
@@ -28,6 +28,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 </body>
 </html>

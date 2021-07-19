@@ -134,7 +134,11 @@ public class BFrontController extends HttpServlet {
 			command = new DSearchCommand();
 			command.execute(request, response);
 			viewPage = "/find/search_didOk.jsp";
-		}
+		} else if (com.equals("f_list.do")) {
+			viewPage = "/find/list.jsp";
+		} else if (com.equals("search_dId.do")) {
+			viewPage = "/find/search_dId.jsp";
+		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>${name}님 안녕하세요.</h1>
 	<table width ="500" cellpadding = "0" cellspacing = "0" border = "1">
 		<tr>
 			<td>번호</td>
@@ -34,7 +35,7 @@
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan = "9"><a href="search_dId.jsp">주인 찾아주기</a></td>
+			<td colspan = "9"><a href="search_dId.do">주인 찾아주기</a></td>
 		</tr>
 	</table>
 

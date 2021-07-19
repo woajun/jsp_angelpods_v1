@@ -2,6 +2,7 @@ package com.javaEdu.ex.command.device;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javaEdu.ex.command.Command;
 import com.javaEdu.ex.dao.DeviceDao;
@@ -26,8 +27,11 @@ public class DSearchCommand implements Command {
 			MemberDto mDto = mDao.getMember(ownerId);
 			request.setAttribute("owner", mDto);
 			ri = 1;
+			
 		} 
 		
+		HttpSession session = request.getSession();
+		session.setAttribute("dId", dId);
 		request.setAttribute("ri", ri);
 	}
 

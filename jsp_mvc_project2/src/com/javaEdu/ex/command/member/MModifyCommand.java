@@ -19,8 +19,9 @@ public class MModifyCommand implements Command {
 		String address = request.getParameter("address");
 		
 		MemberDao dao = MemberDao.getInstance();
-		dao.modify(mId, pw, eMail, address);
+		int ri = dao.modify(mId, pw, eMail, address);
 		
+		request.setAttribute("ri", ri);
 	}
 
 }

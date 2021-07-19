@@ -115,7 +115,7 @@ public class BFrontController extends HttpServlet {
 		} else if (com.equals("member_modify.do")) {
 			command = new MModifyCommand();
 			command.execute(request, response);
-			viewPage = "/member/main.jsp";
+			viewPage = "/member/modifyOk.jsp";
 		}
 			
 		

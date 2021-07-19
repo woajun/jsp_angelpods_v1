@@ -228,34 +228,6 @@ public class MemberDao {
 		
 	}
 	
-	public int updateMember(MemberDto dto) {
-		int ri = 0;
-		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		String query = "update members set pw=?, eMail=?, address=? where id = ?";
-		
-		try {
-			connection = getConnection();
-			pstmt = connection.prepareStatement(query);
-			pstmt.setString(1, dto.getPw());
-			pstmt.setString(2, dto.geteMail());
-			pstmt.setString(3, dto.getAddress());
-			pstmt.setString(4, dto.getId());
-			ri = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-				connection.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return ri;
-	}
-	
 	public MemberDto contentView(String mId) {
 		MemberDto dto = null;
 		Connection connection = null;
@@ -294,9 +266,10 @@ public class MemberDao {
 		return dto;
 	}
 
-	public void modify(String mId, String pw, String eMail, String address) {
+	public int modify(String mId, String pw, String eMail, String address) {
 		// TODO Auto-generated method stub
 
+		int ri = 0;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -309,7 +282,7 @@ public class MemberDao {
 			preparedStatement.setString(2, eMail);
 			preparedStatement.setString(3, address);
 			preparedStatement.setString(4, mId);
-			preparedStatement.executeUpdate();
+			ri = preparedStatement.executeUpdate();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -322,5 +295,6 @@ public class MemberDao {
 				e2.printStackTrace();
 			}
 		}
+		return ri;
 	}
 }

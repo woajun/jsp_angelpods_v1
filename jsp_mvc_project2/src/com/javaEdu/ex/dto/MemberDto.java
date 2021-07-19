@@ -11,6 +11,18 @@ public class MemberDto {
 	private Timestamp rDate;
 	private String address;
 	
+	public MemberDto() {
+	}
+	
+	public MemberDto(String id, String pw, String name, String eMail, Timestamp rDate, String address) {
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.eMail = eMail;
+		this.rDate = rDate;
+		this.address = address;
+	}
+	
 	public String getId() {
 		return id;
 	}

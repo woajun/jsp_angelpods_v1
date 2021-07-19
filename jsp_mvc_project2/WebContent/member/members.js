@@ -2,15 +2,6 @@
  * 
  */
 
-function infoJoined(){
-	alert("A")
-	if(val != null){
-		alert(val);
-		return;
-	}
-	return;
-}
-
 function infoConfirm() {
 	if(document.reg_frm.id.value.length == 0) {
 		alert("아이디는 필수사항 입니다..");

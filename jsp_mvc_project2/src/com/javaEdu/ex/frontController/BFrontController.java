@@ -17,8 +17,11 @@ import com.javaEdu.ex.command.board.BModifyCommand;
 import com.javaEdu.ex.command.board.BReplyCommand;
 import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
+import com.javaEdu.ex.command.member.MContentCommand;
 import com.javaEdu.ex.command.member.MJoinCommand;
 import com.javaEdu.ex.command.member.MLoginCommand;
+import com.javaEdu.ex.command.member.MLogoutCommand;
+import com.javaEdu.ex.command.member.MModifyCommand;
 import com.javaEdu.ex.command.member.MPrintAll;
 import com.javaEdu.ex.command.regist.DRegistCommand;
 
@@ -100,8 +103,21 @@ public class BFrontController extends HttpServlet {
 		} else if (com.equals("login.do")) {
 			command = new MLoginCommand();
 			command.execute(request, response);
+			viewPage = "/member/loginOk.jsp";
+		} else if (com.equals("logout.do")) {
+			command = new MLogoutCommand();
+			command.execute(request, response);
+			viewPage = "/member/login.jsp";
+		} else if (com.equals("modify_view.do")) {
+			command = new MContentCommand();
+			command.execute(request, response);
+			viewPage = "/member/modify.jsp";
+		} else if (com.equals("member_modify.do")) {
+			command = new MModifyCommand();
+			command.execute(request, response);
 			viewPage = "/member/main.jsp";
 		}
+			
 		
 //------------------디바이스---------------------
 		

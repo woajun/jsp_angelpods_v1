@@ -4,8 +4,6 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	int ri= Integer.parseInt(request.getAttribute("ri").toString()); 
-	System.out.println(ri);
-	
 	if(ri == 1) {
 %>
 	<script language = "javascript">

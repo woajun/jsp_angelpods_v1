@@ -3,12 +3,14 @@ package com.javaEdu.ex.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.javaEdu.ex.dto.BDto;
 import com.javaEdu.ex.dto.MemberDto;
 
 public class MemberDao {
@@ -252,5 +254,73 @@ public class MemberDao {
 			}
 		}
 		return ri;
+	}
+	
+	public MemberDto contentView(String mId) {
+		MemberDto dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = getConnection();
+			
+			String query = "select * from members where id = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, mId);
+			rs = preparedStatement.executeQuery();
+			if (rs.next()) {
+				String id = rs.getString("id");
+				String pw = rs.getString("pw");
+				String name = rs.getString("name");
+				String eMail = rs.getString("eMail");
+				Timestamp rDate = rs.getTimestamp("rDate");
+				String address = rs.getString("address");
+				
+				dto = new MemberDto(id, pw, name, eMail, rDate, address);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dto;
+	}
+
+	public void modify(String mId, String pw, String eMail, String address) {
+		// TODO Auto-generated method stub
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = getConnection();
+			
+			String query = "update members set pw = ?, eMail = ?, address =? where id = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, pw);
+			preparedStatement.setString(2, eMail);
+			preparedStatement.setString(3, address);
+			preparedStatement.setString(4, mId);
+			preparedStatement.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null)preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 }

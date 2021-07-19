@@ -17,7 +17,6 @@
 		주소 : <input typpe = "text" name = "address" size = "50"><br/>
 		<input type = "button" value = "회원가입" onclick = "infoConfirm()">
 		&nbsp;&nbsp;&nbsp;
-		<input type = "reset" value ="취소" onclick = "javascript:window.location='login.jsp">
 		<a href = "login.jsp">취소</a>
 	</form>
 </body>

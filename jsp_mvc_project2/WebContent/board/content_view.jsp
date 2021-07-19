@@ -16,7 +16,7 @@
 			</tr>		
 			<tr>
 				<td>히트</td>
-				<td>${content_view.bHit }</td>
+				<td>${content_view.bHit}</td>
 			</tr>
 			<tr>
 				<td>이름</td>

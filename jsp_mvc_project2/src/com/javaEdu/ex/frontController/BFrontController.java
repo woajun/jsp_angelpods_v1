@@ -17,13 +17,14 @@ import com.javaEdu.ex.command.board.BModifyCommand;
 import com.javaEdu.ex.command.board.BReplyCommand;
 import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
+import com.javaEdu.ex.command.device.DRegistCommand;
+import com.javaEdu.ex.command.device.DSearchCommand;
 import com.javaEdu.ex.command.member.MContentCommand;
 import com.javaEdu.ex.command.member.MJoinCommand;
 import com.javaEdu.ex.command.member.MLoginCommand;
 import com.javaEdu.ex.command.member.MLogoutCommand;
 import com.javaEdu.ex.command.member.MModifyCommand;
 import com.javaEdu.ex.command.member.MPrintAll;
-import com.javaEdu.ex.command.regist.DRegistCommand;
 
 @WebServlet("*.do")
 public class BFrontController extends HttpServlet {
@@ -91,7 +92,7 @@ public class BFrontController extends HttpServlet {
 			viewPage = "/board/reply_view.jsp";
 		}
 		
-//------------------멤버 -----------------------
+//------------------member -----------------------
 		if(com.equals("membersAll.do")) {
 			command = new MPrintAll();
 			command.execute(request, response);
@@ -119,7 +120,7 @@ public class BFrontController extends HttpServlet {
 		}
 			
 		
-//------------------디바이스---------------------
+//------------------device---------------------
 		
 		if(com.equals("regist.do")) {
 			command = new DRegistCommand();
@@ -127,7 +128,13 @@ public class BFrontController extends HttpServlet {
 			viewPage = "list.do";
 		}
 		
+//------------------find---------------------
 		
+		if(com.equals("f_write_view.do")) {
+			command = new DSearchCommand();
+			command.execute(request, response);
+			viewPage = "/find/search_didOk.jsp";
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);

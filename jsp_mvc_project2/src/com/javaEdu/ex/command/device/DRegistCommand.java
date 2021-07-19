@@ -1,4 +1,4 @@
-package com.javaEdu.ex.command.regist;
+package com.javaEdu.ex.command.device;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

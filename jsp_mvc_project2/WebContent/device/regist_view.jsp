@@ -11,10 +11,11 @@
 	<form action = "regist.do" method = "post">
        	<label>모델명</label>
         <select id="myselection" class="form-control" name = "model">
-          <option value="Zero">모델 선택</option>
-          <option value="One">에어팟 프로</optzion>
-          <option value="Two">에어팟</option>
-          <option value="Three">삼성 버즈</option>
+          <option value="choose">모델 선택</option>
+          <option value="Pro">에어팟 프로</optzion>
+          <option value="Airpods">에어팟</option>
+          <option value="Buds">삼성 버즈</option>
+          <option value="Others">기타</option>
         </select>
 		<br/>
 		본체 일련번호 : <input type = "text" name = "case" size ="20"><br/>

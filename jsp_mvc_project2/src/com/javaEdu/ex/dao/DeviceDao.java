@@ -2,10 +2,13 @@ package com.javaEdu.ex.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.javaEdu.ex.dto.DeviceDto;
 
 public class DeviceDao {
 
@@ -26,32 +29,63 @@ public class DeviceDao {
 		}
 	}
 	
-	public void regist(String dId, String dGroup, String dModel, String memberId) {
+	public void regist(String dId, String dGroup, String dModel, String ownerId) {
 		
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		Connection con = null;
+		PreparedStatement ps = null;
 		String dState = "Normal";
 		
 		try {
-			connection = dataSource.getConnection();
+			con = dataSource.getConnection();
 			String query = "insert into DEVICES (dId, dGroup, dState, dModel, memberId) values (?,?,?,?,?)";
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, dId);
-			preparedStatement.setString(2, dGroup);
-			preparedStatement.setString(3, dState);
-			preparedStatement.setString(4, dModel);
-			preparedStatement.setString(5, memberId);
-			preparedStatement.executeUpdate();
+			ps = con.prepareStatement(query);
+			ps.setString(1, dId);
+			ps.setString(2, dGroup);
+			ps.setString(3, dState);
+			ps.setString(4, dModel);
+			ps.setString(5, ownerId);
+			ps.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
+				if(ps != null) ps.close();
+				if(con != null) con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
+	}
+
+	public String search(String dId) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String query = "select * from devices where dId = ?";
+			ps = con.prepareStatement(query);
+			ps.setString(1, dId);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				String ownerId = rs.getString("ownerId");
+				return ownerId;
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return null;
 	}
 }

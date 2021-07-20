@@ -9,7 +9,7 @@
 <body>
 	<h1>${name}님 안녕하세요.</h1>
 	<table width = "500" cellpadding = "0" cellspacing = "0" border ="1">
-		<form action = "f_write_view.do" method = "post">
+		<form action = "f_search.do" method = "post">
 			<tr>
 				일련번호로 찾기
 			</tr>

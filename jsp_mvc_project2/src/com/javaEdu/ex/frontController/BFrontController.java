@@ -19,6 +19,8 @@ import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
 import com.javaEdu.ex.command.device.DRegistCommand;
 import com.javaEdu.ex.command.device.DSearchCommand;
+import com.javaEdu.ex.command.find.FListCommand;
+import com.javaEdu.ex.command.find.FWriteCommand;
 import com.javaEdu.ex.command.member.MContentCommand;
 import com.javaEdu.ex.command.member.MJoinCommand;
 import com.javaEdu.ex.command.member.MLoginCommand;
@@ -130,15 +132,19 @@ public class BFrontController extends HttpServlet {
 		
 //------------------find---------------------
 		
-		if(com.equals("f_write_view.do")) {
+		if(com.equals("f_search.do")) {
 			command = new DSearchCommand();
 			command.execute(request, response);
 			viewPage = "/find/search_didOk.jsp";
+		} else if (com.equals("f_write.do")) {
+			command = new FWriteCommand();
+			command.execute(request, response);
+			viewPage = "f_list.do";
 		} else if (com.equals("f_list.do")) {
+			command = new FListCommand();
+			command.execute(request, response);
 			viewPage = "/find/list.jsp";
-		} else if (com.equals("search_dId.do")) {
-			viewPage = "/find/search_dId.jsp";
-		} 
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);

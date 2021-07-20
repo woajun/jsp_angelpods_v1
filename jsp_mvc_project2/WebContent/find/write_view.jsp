@@ -45,7 +45,7 @@
 			<tr>
 				<td colspan = "5"><input type = "submit" value="입력">
 				&nbsp;&nbsp;
-				<a href = "list.do">목록보기</a>
+				<a href = "f_list.do">목록보기</a>
 				</td>
 			</tr>
 		</form>

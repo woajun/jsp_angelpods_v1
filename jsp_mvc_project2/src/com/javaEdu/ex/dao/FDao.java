@@ -39,8 +39,8 @@ public class FDao {
 		
 		try {
 			con = dataSource.getConnection();
-			String query = "insert into find_board (num, image, model, area, title, contents, comments, findornot) values "
-					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, 0, ?)";
+			String query = "insert into find_board (num, image, model, area, title, contents, findornot) values "
+					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			ps = con.prepareStatement(query);
 			ps.setString(1, image);
 			ps.setString(2, model);
@@ -71,7 +71,7 @@ public class FDao {
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select num, image, model, rdate, area, title, contents, comments, findornot from find_board order by num desc";
+			String query = "select num, image, model, rdate, area, title, contents, findornot from find_board order by num desc";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -83,10 +83,9 @@ public class FDao {
 				String area = rs.getString("area");
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
-				int comments = rs.getInt("comments");
 				String findornot = rs.getString("findornot");
 				
-				FDto dto = new FDto(num, image, model, rdate, area, title, contents, comments, findornot);
+				FDto dto = new FDto(num, image, model, rdate, area, title, contents, findornot);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -103,5 +102,49 @@ public class FDao {
 			}
 		}
 		return dtos;
+	}
+
+	public FDto contentView(int intNum) {
+		// TODO Auto-generated method stub
+
+//		upHit(strID);
+		FDto dto = null;
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "select * from find_board where num = ?";
+			ps = con.prepareStatement(query);
+			ps.setInt(1, intNum);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				int num = rs.getInt("num");
+				String image = rs.getString("image");
+				String model = rs.getString("model");
+				Timestamp rdate = rs.getTimestamp("rdate");
+				String area = rs.getString("area");
+				String title = rs.getString("title");
+				String contents = rs.getString("contents");
+				String findornot = rs.getString("findornot");
+				
+				dto = new FDto(num, image, model, rdate, area, title, contents, findornot);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dto;
 	}
 }

@@ -11,11 +11,10 @@ public class FDto {
 	private String area;
 	private String title;
 	private String contents;
-	private int comments;
 	private String findornot;
 	
 	public FDto(int num, String image, String model, Timestamp rdate, String area, String title, String contents,
-			int comments, String findornot) {
+			String findornot) {
 		super();
 		this.num = num;
 		this.image = image;
@@ -24,7 +23,6 @@ public class FDto {
 		this.area = area;
 		this.title = title;
 		this.contents = contents;
-		this.comments = comments;
 		this.findornot = findornot;
 	}
 	
@@ -69,12 +67,6 @@ public class FDto {
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
-	}
-	public int getComments() {
-		return comments;
-	}
-	public void setComments(int comments) {
-		this.comments = comments;
 	}
 	public String getFindornot() {
 		return findornot;

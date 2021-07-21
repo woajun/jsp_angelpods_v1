@@ -18,20 +18,19 @@ public class DSearchCommand implements Command {
 		DeviceDao dao = DeviceDao.getInstance();
 		
 		String dId = request.getParameter("dId");
-		String ownerId = dao.search(dId);
+		DeviceDto dDto = dao.search(dId);
+		int ri = -1;
 		
-		int ri = 0;
-		
-		if (ownerId != null) {
+		if (dDto != null) {
 			MemberDao mDao = MemberDao.getInstance();
-			MemberDto mDto = mDao.getMember(ownerId);
+			MemberDto mDto = mDao.getMember(dDto.getOwnerId());
+			request.setAttribute("device", dDto);
 			request.setAttribute("owner", mDto);
 			ri = 1;
 			
 		} 
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("dId", dId);
+		request.setAttribute("dId", dId);
 		request.setAttribute("ri", ri);
 	}
 

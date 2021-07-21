@@ -58,7 +58,7 @@ public class DeviceDao {
 		}
 	}
 
-	public String search(String dId) {
+	public DeviceDto search(String dId) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -71,8 +71,14 @@ public class DeviceDao {
 			ps.setString(1, dId);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				String ownerId = rs.getString("ownerId");
-				return ownerId;
+				DeviceDto dto = new DeviceDto();
+				dto.setdId(rs.getString("did"));
+				dto.setdGroup(rs.getString("dgroup"));
+				dto.setDrDate(rs.getTimestamp("drdate"));
+				dto.setdState(rs.getString("dstate"));
+				dto.setdModel(rs.getString("dmodel"));
+				dto.setOwnerId(rs.getString("ownerId"));
+				return dto;
 			}
 			
 		} catch(Exception e) {

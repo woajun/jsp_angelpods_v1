@@ -9,7 +9,7 @@ public class DeviceDto {
 	private Timestamp drDate;
 	private String dState;
 	private String dModel;
-	private String memberId;
+	private String ownerId;
 	
 	
 	public String getdId() {
@@ -42,11 +42,11 @@ public class DeviceDto {
 	public void setdModel(String dModel) {
 		this.dModel = dModel;
 	}
-	public String getMemberId() {
-		return memberId;
+	public String getOwnerId() {
+		return ownerId;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setOwnerId(String memberId) {
+		this.ownerId = memberId;
 	}
 	
 }

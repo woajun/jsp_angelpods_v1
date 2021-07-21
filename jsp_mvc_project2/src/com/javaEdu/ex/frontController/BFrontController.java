@@ -19,8 +19,10 @@ import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
 import com.javaEdu.ex.command.device.DRegistCommand;
 import com.javaEdu.ex.command.device.DSearchCommand;
+import com.javaEdu.ex.command.find.FContentCommand;
 import com.javaEdu.ex.command.find.FListCommand;
 import com.javaEdu.ex.command.find.FWriteCommand;
+import com.javaEdu.ex.command.find.FWriteViewCommand;
 import com.javaEdu.ex.command.member.MContentCommand;
 import com.javaEdu.ex.command.member.MJoinCommand;
 import com.javaEdu.ex.command.member.MLoginCommand;
@@ -135,7 +137,7 @@ public class BFrontController extends HttpServlet {
 		if(com.equals("f_search.do")) {
 			command = new DSearchCommand();
 			command.execute(request, response);
-			viewPage = "/find/search_didOk.jsp";
+			viewPage = "/find/search_action.jsp";
 		} else if (com.equals("f_write.do")) {
 			command = new FWriteCommand();
 			command.execute(request, response);
@@ -143,9 +145,20 @@ public class BFrontController extends HttpServlet {
 		} else if (com.equals("f_list.do")) {
 			command = new FListCommand();
 			command.execute(request, response);
-			viewPage = "/find/list.jsp";
+			viewPage = "/find/list_view.jsp";
+		} else if (com.equals("f_content_view.do")) {
+			command = new FContentCommand();
+			command.execute(request,response);
+			viewPage = "/find/content_view.jsp";
+			
+		} else if (com.equals("f_search_view.do")) {
+			viewPage = "/find/search_view.jsp";
+		} else if (com.equals("f_write_view.do")) {
+			command = new FWriteViewCommand();
+			command.execute(request,response);
+			viewPage = "/find/write_view.jsp";
 		}
-		
+			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
 	}

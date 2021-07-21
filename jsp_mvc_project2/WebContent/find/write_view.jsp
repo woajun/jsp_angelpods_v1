@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${name}님 안녕하세요.</h1>
 	<table width = "500" cellpadding = "0" cellspacing = "0" border ="1">
 		<form action = "f_write.do" method = "post">
 			<tr>
 				<td>사진</td>
-				<td><input type = "image" name = "bName" size= "50"></td>
+				<td><input type = "file" name = "image" size= "50"></td>
 			</tr>
 			<tr>
 				<td>모델</td>
@@ -32,15 +31,15 @@
 			</tr>
 			<tr>
 				<td>지역</td>
-				<td><textarea name = "area" rows = "10"></textarea></td>
+				<td><textarea name = "area" ></textarea></td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><textarea name = "title" rows = "10"></textarea></td>
+				<td><textarea name = "title" ></textarea></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name = "contents" rows = "10"></textarea></td>
+				<td><textarea name = "contents" rows = "5"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan = "5"><input type = "submit" value="입력">

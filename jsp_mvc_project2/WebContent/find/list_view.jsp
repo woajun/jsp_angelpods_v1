@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${name}님 안녕하세요.</h1>
 	<table width ="500" cellpadding = "0" cellspacing = "0" border = "1">
 		<tr>
+
 			<td>번호</td>
 			<td>이미지</td>
 			<td>모델</td>
@@ -24,23 +24,20 @@
 
 		<c:forEach items = "${list}" var="dto">
 		<tr>
-			<td>${dto.num}</td>
-			<td>${dto.image}</td>
-			<td>${dto.model}</td>
-			<td>${dto.rdate}</td>
-			<td>${dto.area}</td>
-			<td>${dto.title}</td>
-			<td>${dto.contents}</td>
-			<td>${dto.comments}</td>
-			<td>${dto.findornot}</td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.num}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.image}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.model}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.rdate}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.area}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.title}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.contents}</a></td>
+			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.findornot}</a></td>
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan = "9"><a href="search_dId.jsp">주인 찾아주기</a></td>
+			<td colspan = "9"><a href="f_search_view.do">주인 찾아주기</a></td>
 		</tr>
 	</table>
-
-	
 	
 </body>
 </html>

@@ -2,10 +2,10 @@ package com.javaEdu.ex.command.find;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.javaEdu.ex.command.Command;
 import com.javaEdu.ex.dao.FDao;
-import com.javaEdu.ex.dto.FindDto;
 
 public class FWriteCommand implements Command {
 

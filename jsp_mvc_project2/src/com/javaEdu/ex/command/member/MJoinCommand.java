@@ -15,18 +15,12 @@ public class MJoinCommand implements Command {
 		MemberDto dto = new MemberDto();
 		MemberDao dao = MemberDao.getInstance();
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String eMail = request.getParameter("eMail");
-		String address = request.getParameter("address");
-		
-		dto.setId(id);
-		dto.setPw(pw);
-		dto.setName(name);
-		dto.seteMail(eMail);
-		dto.setAddress(address);
-		
+		dto.setId(request.getParameter("id"));
+		dto.setPw(request.getParameter("pw"));
+		dto.setName(request.getParameter("name"));
+		dto.seteMail(request.getParameter("eMail"));
+		dto.setAddress(request.getParameter("sido")+" "+request.getParameter("gugun"));
+		dto.setPhone(request.getParameter("phone"));
 		
 		int ri = 0;
 		if(dao.confirmId(dto.getId()) == 1){
@@ -40,8 +34,6 @@ public class MJoinCommand implements Command {
 				ri = 0;
 			}
 		}
-		
 		request.setAttribute("ri", ri);
-		
 	}
 }

@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type = "text/javascript" src="../find/find.js/jquery-3.6.0.min.js"></script>
+<script type = "text/javascript" src="../find/find.js/find.address.js"></script>
 <script language = "JavaScript" src = "members.js"></script>
 </head>
 <body>
@@ -14,9 +16,13 @@
 		아이디 : ${mdto.id}<br/>
 		비밀번호 : <input type = "password" name = "pw" size = "20"><br/>
 		비밀번호 확인 : <input type = "password" name = "pw_check" size = "20"><br/>
-		이름 : ${mdto.name}<br/>
+		닉네임 : <input type = "text" name = "name" size = "20" value = "${mdto.name}"><br/>
 		메일 : <input type = "text" name = "eMail" size = "20" value = "${mdto.eMail}"><br/>
-		주소 : <input type = "text" name = "address" size = "50" value = "${mdto.address}"><br/>
+		주소 : ${mdto.address}
+		/ 주소변경 : 
+		<select name="sido" class ="form-select"></select>
+        <select name="gugun" class ="form-select mt-1"></select><br/>
+		연락처 : <input type = "text" name = "phone" size = "20" value = "${mdto.phone}"><br/>
 		<input type = "button" value = "수정" onclick="updateInfoConfirm()">
 		&nbsp;&nbsp;&nbsp;
 		<input type = "reset" value = "취소" onclick = "javascript:window.location ='login.jsp'">

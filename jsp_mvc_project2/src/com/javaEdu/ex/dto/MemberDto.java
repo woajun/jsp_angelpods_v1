@@ -10,17 +10,19 @@ public class MemberDto {
 	private String eMail;
 	private Timestamp rDate;
 	private String address;
-	
+	private String phone;
+
 	public MemberDto() {
 	}
 	
-	public MemberDto(String id, String pw, String name, String eMail, Timestamp rDate, String address) {
+	public MemberDto(String id, String pw, String name, String eMail, Timestamp rDate, String address, String phone) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.eMail = eMail;
 		this.rDate = rDate;
 		this.address = address;
+		this.phone = phone;
 	}
 	
 	public String getId() {
@@ -58,6 +60,12 @@ public class MemberDto {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }

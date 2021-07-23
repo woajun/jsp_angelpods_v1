@@ -15,12 +15,15 @@ public class MModifyCommand implements Command {
 
 		String mId = request.getSession().getAttribute("id").toString();
 		String pw = request.getParameter("pw");
+		String name = request.getParameter("name");
 		String eMail = request.getParameter("eMail");
-		String address = request.getParameter("address");
+		String address = request.getParameter("sido") + " " + request.getParameter("gugun") ;
+		String phone = request.getParameter("phone");
 		
 		MemberDao dao = MemberDao.getInstance();
-		int ri = dao.modify(mId, pw, eMail, address);
+		int ri = dao.modify(mId, pw, name, eMail, address, phone);
 		
+		System.out.println(ri);
 		request.setAttribute("ri", ri);
 	}
 

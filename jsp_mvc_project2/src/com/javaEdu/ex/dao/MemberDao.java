@@ -84,6 +84,7 @@ public class MemberDao {
 				dto.seteMail(set.getString("eMail"));
 				dto.setrDate(set.getTimestamp("rDate"));
 				dto.setAddress(set.getString("address"));
+				dto.setPhone(set.getString("phone"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,7 +161,7 @@ public class MemberDao {
 		
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		String query = "insert into members values (?,?,?,?,?,?)";
+		String query = "insert into members (id, pw, name, email, address, phone) values (?,?,?,?,?,?)";
 		
 		try {
 			connection = getConnection();
@@ -169,8 +170,8 @@ public class MemberDao {
 			pstmt.setString(2, dto.getPw());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.geteMail());
-			pstmt.setTimestamp(5, dto.getrDate());
-			pstmt.setString(6, dto.getAddress());
+			pstmt.setString(5, dto.getAddress());
+			pstmt.setString(6, dto.getPhone());
 			pstmt.executeUpdate();
 			ri = 1;
 		} catch (Exception e) {
@@ -208,6 +209,7 @@ public class MemberDao {
 				dto.seteMail(rs.getString("eMail"));
 				dto.setrDate(rs.getTimestamp("rDate"));
 				dto.setAddress(rs.getString("address"));
+				dto.setAddress(rs.getString("phone"));
 				dtos.add(dto);
 			}
 			System.out.println("--------------------");
@@ -248,8 +250,9 @@ public class MemberDao {
 				String eMail = rs.getString("eMail");
 				Timestamp rDate = rs.getTimestamp("rDate");
 				String address = rs.getString("address");
+				String phone = rs.getString("phone");
 				
-				dto = new MemberDto(id, pw, name, eMail, rDate, address);
+				dto = new MemberDto(id, pw, name, eMail, rDate, address, phone);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -266,7 +269,7 @@ public class MemberDao {
 		return dto;
 	}
 
-	public int modify(String mId, String pw, String eMail, String address) {
+	public int modify(String mId, String pw, String name, String eMail, String address, String phone) {
 		// TODO Auto-generated method stub
 
 		int ri = 0;
@@ -276,12 +279,14 @@ public class MemberDao {
 		try {
 			connection = getConnection();
 			
-			String query = "update members set pw = ?, eMail = ?, address =? where id = ?";
+			String query = "update members set pw = ?, name = ?, eMail = ?, address = ?, phone = ? where id = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, pw);
-			preparedStatement.setString(2, eMail);
-			preparedStatement.setString(3, address);
-			preparedStatement.setString(4, mId);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, eMail);
+			preparedStatement.setString(4, address);
+			preparedStatement.setString(5, phone);
+			preparedStatement.setString(6, mId);
 			ri = preparedStatement.executeUpdate();
 			
 		} catch (Exception e) {

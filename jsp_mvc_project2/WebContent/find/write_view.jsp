@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type = "text/javascript" src="find.js/jquery-3.6.0.min.js"></script>
+<script type = "text/javascript" src="find.js/find.address.js"></script>
+
 </head>
 <body>
 	<table width = "500" cellpadding = "0" cellspacing = "0" border ="1">
@@ -31,7 +35,10 @@
 			</tr>
 			<tr>
 				<td>지역</td>
-				<td><textarea name = "area" ></textarea></td>
+				<td>
+                  <select name="sido" class ="form-select"></select>
+                  <select name="gugun" class ="form-select mt-1"></select>
+				</td>
 			</tr>
 			<tr>
 				<td>제목</td>

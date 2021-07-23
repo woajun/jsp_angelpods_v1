@@ -34,6 +34,12 @@
 				<td colspan="2"><input type="submit" value="수정">
 				&nbsp;&nbsp;
 				<a href = "f_list.do">목록보기</a>
+				&nbsp;&nbsp;
+				<a href = "f_delete.do?num=${content_view.num}">삭제</a>
+				&nbsp;&nbsp;
+				<a href = "f_modify_view.do?num=${content_view.num}">수정</a>
+				&nbsp;&nbsp;
+				<a href = "f_delete.do?num=${content_view.num}">쪽지보내기</a>
 			</tr>
 		</form>
 	</table>

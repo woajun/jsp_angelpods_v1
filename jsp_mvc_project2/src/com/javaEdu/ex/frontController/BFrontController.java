@@ -20,7 +20,9 @@ import com.javaEdu.ex.command.board.BWriteCommand;
 import com.javaEdu.ex.command.device.DRegistCommand;
 import com.javaEdu.ex.command.device.DSearchCommand;
 import com.javaEdu.ex.command.find.FContentCommand;
+import com.javaEdu.ex.command.find.FDeleteCommand;
 import com.javaEdu.ex.command.find.FListCommand;
+import com.javaEdu.ex.command.find.FModifyCommand;
 import com.javaEdu.ex.command.find.FWriteCommand;
 import com.javaEdu.ex.command.find.FWriteViewCommand;
 import com.javaEdu.ex.command.member.MContentCommand;
@@ -157,6 +159,16 @@ public class BFrontController extends HttpServlet {
 			command = new FWriteViewCommand();
 			command.execute(request,response);
 			viewPage = "/find/write_view.jsp";
+		} else if (com.equals("f_delete.do")) {
+			command = new FDeleteCommand();
+			command.execute(request, response);
+			viewPage = "f_list.do";
+		} else if (com.equals("f_modify_view.do")) {
+			viewPage = "/find/contentModify_view.jsp";
+		} else if (com.equals("f_modify.do")) {
+			command = new FModifyCommand();
+			command.execute(request, response);
+			viewPage = "f_list.do";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

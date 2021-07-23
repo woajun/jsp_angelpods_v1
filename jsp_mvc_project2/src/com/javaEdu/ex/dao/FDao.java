@@ -147,4 +147,29 @@ public class FDao {
 		}
 		return dto;
 	}
+	
+	public void delete (String num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			
+			con = dataSource.getConnection();
+			String query = "delete from find_board where num = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(num));
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+	}
 }

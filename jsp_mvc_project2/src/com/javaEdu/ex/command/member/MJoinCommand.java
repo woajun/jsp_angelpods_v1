@@ -19,7 +19,8 @@ public class MJoinCommand implements Command {
 		dto.setPw(request.getParameter("pw"));
 		dto.setName(request.getParameter("name"));
 		dto.seteMail(request.getParameter("eMail"));
-		dto.setAddress(request.getParameter("sido")+" "+request.getParameter("gugun"));
+		dto.setSido(request.getParameter("sido"));
+		dto.setGugun(request.getParameter("gugun"));
 		dto.setPhone(request.getParameter("phone"));
 		
 		int ri = 0;

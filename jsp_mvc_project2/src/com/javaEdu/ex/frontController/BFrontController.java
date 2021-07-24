@@ -31,6 +31,7 @@ import com.javaEdu.ex.command.member.MLoginCommand;
 import com.javaEdu.ex.command.member.MLogoutCommand;
 import com.javaEdu.ex.command.member.MModifyCommand;
 import com.javaEdu.ex.command.member.MPrintAll;
+import com.javaEdu.ex.command.member.MWithdrawCommand;
 
 @WebServlet("*.do")
 public class BFrontController extends HttpServlet {
@@ -123,6 +124,10 @@ public class BFrontController extends HttpServlet {
 			command = new MModifyCommand();
 			command.execute(request, response);
 			viewPage = "/member/modifyOk.jsp";
+		} else if (com.equals("member_withdraw.do")) {
+			command = new MWithdrawCommand();
+			command.execute(request, response);
+			viewPage = "/member/login.jsp";
 		}
 			
 		

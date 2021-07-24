@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	int ri = Integer.parseInt(session.getAttribute("ri").toString());
+	int ri = Integer.parseInt(request.getAttribute("ri").toString());
 	
 	if(ri == 1) {
 %>

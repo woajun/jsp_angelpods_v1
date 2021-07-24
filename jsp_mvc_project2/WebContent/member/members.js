@@ -64,3 +64,8 @@ function updateInfoConfirm(){
 	document.reg_frm.submit();
 	
 }
+
+function updateAddress(){
+	reg_frm.sido.value = reg_frm.sido2.value;
+	reg_frm.gugun.value = reg_frm.gugun2.value;
+}

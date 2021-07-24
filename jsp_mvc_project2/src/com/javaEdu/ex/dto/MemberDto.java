@@ -9,19 +9,21 @@ public class MemberDto {
 	private String name;
 	private String eMail;
 	private Timestamp rDate;
-	private String address;
+	private String sido;
+	private String gugun;
 	private String phone;
 
 	public MemberDto() {
 	}
 	
-	public MemberDto(String id, String pw, String name, String eMail, Timestamp rDate, String address, String phone) {
+	public MemberDto(String id, String pw, String name, String eMail, Timestamp rDate, String sido, String gugun, String phone) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.eMail = eMail;
 		this.rDate = rDate;
-		this.address = address;
+		this.sido = sido;
+		this.gugun = gugun;
 		this.phone = phone;
 	}
 	
@@ -55,11 +57,17 @@ public class MemberDto {
 	public void setrDate(Timestamp rDate) {
 		this.rDate = rDate;
 	}
-	public String getAddress() {
-		return address;
+	public String getSido() {
+		return sido;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setSido(String sido) {
+		this.sido = sido;
+	}
+	public String getGugun() {
+		return gugun;
+	}
+	public void setGugun(String gugun) {
+		this.gugun = gugun;
 	}
 	public String getPhone() {
 		return phone;
@@ -67,5 +75,4 @@ public class MemberDto {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 }

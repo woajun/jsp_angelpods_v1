@@ -10,7 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.javaEdu.ex.dto.BDto;
 import com.javaEdu.ex.dto.MemberDto;
 
 public class MemberDao {
@@ -83,7 +82,8 @@ public class MemberDao {
 				dto.setName(set.getString("name"));
 				dto.seteMail(set.getString("eMail"));
 				dto.setrDate(set.getTimestamp("rDate"));
-				dto.setAddress(set.getString("address"));
+				dto.setSido(set.getString("sido"));
+				dto.setGugun(set.getString("gugun"));
 				dto.setPhone(set.getString("phone"));
 			}
 		} catch (Exception e) {
@@ -126,14 +126,14 @@ public class MemberDao {
 	public int confirmId(String id) {
 		int ri = 0;
 		
-		Connection connection = null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
 		String query = "select id from members where id = ?";
 		
 		try {
-			connection = getConnection();
-			pstmt = connection.prepareStatement(query);
+			con = getConnection();
+			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, id);
 			set = pstmt.executeQuery();
 			if(set.next()) {
@@ -147,7 +147,7 @@ public class MemberDao {
 			try {
 				set.close();
 				pstmt.close();
-				connection.close();
+				con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -161,7 +161,7 @@ public class MemberDao {
 		
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		String query = "insert into members (id, pw, name, email, address, phone) values (?,?,?,?,?,?)";
+		String query = "insert into members (id, pw, name, email, sido, gugun, phone) values (?,?,?,?,?,?,?)";
 		
 		try {
 			connection = getConnection();
@@ -170,8 +170,9 @@ public class MemberDao {
 			pstmt.setString(2, dto.getPw());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.geteMail());
-			pstmt.setString(5, dto.getAddress());
-			pstmt.setString(6, dto.getPhone());
+			pstmt.setString(5, dto.getSido());
+			pstmt.setString(6, dto.getGugun());
+			pstmt.setString(7, dto.getPhone());
 			pstmt.executeUpdate();
 			ri = 1;
 		} catch (Exception e) {
@@ -200,7 +201,6 @@ public class MemberDao {
 			pstmt = connection.prepareStatement(query);
 			rs = pstmt.executeQuery();
 
-			System.out.println("============");
 			while (rs.next()) {
 				MemberDto dto = new MemberDto();
 				dto.setId(rs.getString("id"));
@@ -208,11 +208,11 @@ public class MemberDao {
 				dto.setName(rs.getString("name"));
 				dto.seteMail(rs.getString("eMail"));
 				dto.setrDate(rs.getTimestamp("rDate"));
-				dto.setAddress(rs.getString("address"));
-				dto.setAddress(rs.getString("phone"));
+				dto.setSido(rs.getString("sido"));
+				dto.setGugun(rs.getString("gugun"));
+				dto.setPhone(rs.getString("phone"));
 				dtos.add(dto);
 			}
-			System.out.println("--------------------");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -232,27 +232,28 @@ public class MemberDao {
 	
 	public MemberDto contentView(String mId) {
 		MemberDto dto = null;
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			connection = getConnection();
+			con = getConnection();
 			
 			String query = "select * from members where id = ?";
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, mId);
-			rs = preparedStatement.executeQuery();
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mId);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String id = rs.getString("id");
 				String pw = rs.getString("pw");
 				String name = rs.getString("name");
 				String eMail = rs.getString("eMail");
 				Timestamp rDate = rs.getTimestamp("rDate");
-				String address = rs.getString("address");
+				String sido = rs.getString("sido");
+				String gugun = rs.getString("gugun");
 				String phone = rs.getString("phone");
 				
-				dto = new MemberDto(id, pw, name, eMail, rDate, address, phone);
+				dto = new MemberDto(id, pw, name, eMail, rDate, sido, gugun, phone);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -260,8 +261,8 @@ public class MemberDao {
 		} finally {
 			try {
 				if(rs != null) rs.close();
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -269,37 +270,69 @@ public class MemberDao {
 		return dto;
 	}
 
-	public int modify(String mId, String pw, String name, String eMail, String address, String phone) {
+	public int modify(String mId, String pw, String name, String eMail, String sido, String gugun, String phone) {
 		// TODO Auto-generated method stub
 
 		int ri = 0;
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		
 		try {
-			connection = getConnection();
+			con = getConnection();
 			
-			String query = "update members set pw = ?, name = ?, eMail = ?, address = ?, phone = ? where id = ?";
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, pw);
-			preparedStatement.setString(2, name);
-			preparedStatement.setString(3, eMail);
-			preparedStatement.setString(4, address);
-			preparedStatement.setString(5, phone);
-			preparedStatement.setString(6, mId);
-			ri = preparedStatement.executeUpdate();
+			String query = "update members set pw = ?, name = ?, eMail = ?, sido = ?, gugun = ?, phone = ? where id = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, pw);
+			pstmt.setString(2, name);
+			pstmt.setString(3, eMail);
+			pstmt.setString(4, sido);
+			pstmt.setString(5, gugun);
+			pstmt.setString(6, phone);
+			pstmt.setString(7, mId);
+			ri = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
 			try {
-				if(preparedStatement != null)preparedStatement.close();
-				if(connection != null) connection.close();
+				if(pstmt != null)pstmt.close();
+				if(con != null) con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
+		return ri;
+	}
+
+	public int delete(String id) {
+		// TODO Auto-generated method stub
+		
+		int ri = -1;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			
+			String query = "delete from members where id = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			ri = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}	
+		}
+		
+		System.out.println("delete" + ri);
 		return ri;
 	}
 }

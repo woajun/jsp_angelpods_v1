@@ -18,10 +18,12 @@
 		비밀번호 확인 : <input type = "password" name = "pw_check" size = "20"><br/>
 		닉네임 : <input type = "text" name = "name" size = "20" value = "${mdto.name}"><br/>
 		메일 : <input type = "text" name = "eMail" size = "20" value = "${mdto.eMail}"><br/>
-		주소 : ${mdto.address}
-		/ 주소변경 : 
-		<select name="sido" class ="form-select"></select>
-        <select name="gugun" class ="form-select mt-1"></select><br/>
+		주소 : 
+		<input type = "text" name = "sido" value = "${mdto.sido}" > 
+		<input type = "text" name = "gugun" value = "${mdto.gugun}" ><br/> 
+        <select name="sido2" class ="form-select"></select>
+        <select name="gugun2" class ="form-select mt-1"></select>
+		<input type = "button" value = "주소변경" onclick = "updateAddress()"><br/>
 		연락처 : <input type = "text" name = "phone" size = "20" value = "${mdto.phone}"><br/>
 		<input type = "button" value = "수정" onclick="updateInfoConfirm()">
 		&nbsp;&nbsp;&nbsp;

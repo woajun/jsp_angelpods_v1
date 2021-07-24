@@ -26,7 +26,7 @@
 			<td>${dto.name}</td>
 			<td>${dto.eMail}</td>
 			<td>${dto.rDate}</td>
-			<td>${dto.address}</td>
+			<td>${dto.sido} ${dto.gugun}</td>
 		</tr>
 		</c:forEach>
 		<tr>

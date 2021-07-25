@@ -19,9 +19,8 @@
 		<input type = "button" value = "회원탈퇴" onclick = "javascript:window.location='member_withdraw.do?id=${id}'">
 		<%-- <a href = "member_withdraw.do?id=${id}">회원탈퇴</a> --%>
 		<a href = "membersAll.do">모든 회원 정보보기</a>
-		<a href = "regist_view.do">기기 등록</a>
-		<a href = "list.do">게시글보기</a>
-		<a href = "f_list.do">습득 게시글 보기</a>
+		<a href = "../device/regist_view.jsp">기기 등록</a>
+		<a href = "../find/list_view.jsp">습득 게시글 보기</a>
 	</form>
 	
 </body>

@@ -32,15 +32,15 @@ public class FDao {
 		return instance;
 	}
 	
-	public void write(String image, String model, String area, String title, String contents) {
+	public void write(String image, String model, String area, String title, String contents, String writerId, String deviceId) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String findOrNot = "NORMAL";
 		
 		try {
 			con = dataSource.getConnection();
-			String query = "insert into find_board (num, image, model, area, title, contents, findornot) values "
-					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into find_board (num, image, model, area, title, contents, findornot, writerId, deviceId) values "
+					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = con.prepareStatement(query);
 			ps.setString(1, image);
 			ps.setString(2, model);
@@ -48,6 +48,8 @@ public class FDao {
 			ps.setString(4, title);
 			ps.setString(5, contents);
 			ps.setString(6, findOrNot);
+			ps.setString(7, writerId);
+			ps.setString(8, deviceId);
 			ps.executeUpdate();
 			
 		} catch(Exception e) {
@@ -71,7 +73,7 @@ public class FDao {
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select num, image, model, rdate, area, title, contents, findornot from find_board order by num desc";
+			String query = "select num, image, model, rdate, area, title, contents, findornot, writerId, deviceId from find_board order by num desc";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -84,8 +86,10 @@ public class FDao {
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
 				String findornot = rs.getString("findornot");
+				String writerId = rs.getString("writerId");
+				String deviceId = rs.getString("deviceId");
 				
-				FDto dto = new FDto(num, image, model, rdate, area, title, contents, findornot);
+				FDto dto = new FDto(num, image, model, rdate, area, title, contents, findornot, writerId, deviceId);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -130,8 +134,10 @@ public class FDao {
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
 				String findornot = rs.getString("findornot");
+				String writerId = rs.getString("writerId");
+				String deviceId = rs.getString("deviceId");
 				
-				dto = new FDto(num, image, model, rdate, area, title, contents, findornot);
+				dto = new FDto(num, image, model, rdate, area, title, contents, findornot, writerId, deviceId);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -171,5 +177,53 @@ public class FDao {
 				e2.printStackTrace();
 			}
 		}
+	}
+
+	public ArrayList<FDto> searchList(String[] models, String sArea, String keyword) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<FDto> dtos = new ArrayList <FDto>();
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "select num, image, model, rdate, area, title, contents, findornot, writerId, deviceId from find_board where area = ? order by num desc";
+			ps = con.prepareStatement(query);
+			ps.setString(1, sArea);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int num = rs.getInt("num");
+				String image = rs.getString("image");
+				String model = rs.getString("model");
+				Timestamp rdate = rs.getTimestamp("rdate");
+				String area = rs.getString("area");
+				String title = rs.getString("title");
+				String contents = rs.getString("contents");
+				String findornot = rs.getString("findornot");
+				String writerId = rs.getString("writerId");
+				String deviceId = rs.getString("deviceId");
+				
+				FDto dto = new FDto(num, image, model, rdate, area, title, contents, findornot, writerId, deviceId);
+				dtos.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		return dtos;
 	}
 }

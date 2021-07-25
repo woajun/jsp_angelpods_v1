@@ -12,9 +12,11 @@ public class FDto {
 	private String title;
 	private String contents;
 	private String findornot;
+	private String writerId;
+	private String deviceId;
 	
 	public FDto(int num, String image, String model, Timestamp rdate, String area, String title, String contents,
-			String findornot) {
+			String findornot, String writerId, String deviceId) {
 		super();
 		this.num = num;
 		this.image = image;
@@ -24,6 +26,8 @@ public class FDto {
 		this.title = title;
 		this.contents = contents;
 		this.findornot = findornot;
+		this.writerId = writerId;
+		this.deviceId = deviceId;
 	}
 	
 	public int getNum() {
@@ -74,6 +78,17 @@ public class FDto {
 	public void setFindornot(String findornot) {
 		this.findornot = findornot;
 	}
-	
+	public String getWriterId() {
+		return writerId;
+	}
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
+	public String getDeviceId() {
+		return deviceId;
+	}
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
 	
 }

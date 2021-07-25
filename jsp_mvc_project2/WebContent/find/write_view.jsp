@@ -31,11 +31,17 @@
 			</tr>
 			<tr>
 				<td>일련번호</td>
-				<td>${dId}</td>
+				<td>
+					${dId}
+					<input type = "hidden" name = "deviceId" value = "${dId}">
+				</td>
 			</tr>
 			<tr>
-				<td>지역</td>
+				<td>습득장소</td>
 				<td>
+					습득장소를 지도에서 선택해주세요.<br/>
+					<input type = "button" value = "주소검색" onclick = "javascript:window.location='selectAddress_view.jsp'">
+					
                   <select name="sido" class ="form-select"></select>
                   <select name="gugun" class ="form-select mt-1"></select>
 				</td>

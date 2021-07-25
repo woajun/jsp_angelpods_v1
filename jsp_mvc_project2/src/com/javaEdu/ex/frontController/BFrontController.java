@@ -18,11 +18,13 @@ import com.javaEdu.ex.command.board.BReplyCommand;
 import com.javaEdu.ex.command.board.BReplyViewCommand;
 import com.javaEdu.ex.command.board.BWriteCommand;
 import com.javaEdu.ex.command.device.DRegistCommand;
+import com.javaEdu.ex.command.device.DRegistViewCommand;
 import com.javaEdu.ex.command.device.DSearchCommand;
 import com.javaEdu.ex.command.find.FContentCommand;
 import com.javaEdu.ex.command.find.FDeleteCommand;
 import com.javaEdu.ex.command.find.FListCommand;
 import com.javaEdu.ex.command.find.FModifyCommand;
+import com.javaEdu.ex.command.find.FSearchCommand;
 import com.javaEdu.ex.command.find.FWriteCommand;
 import com.javaEdu.ex.command.find.FWriteViewCommand;
 import com.javaEdu.ex.command.member.MContentCommand;
@@ -133,10 +135,14 @@ public class BFrontController extends HttpServlet {
 		
 //------------------device---------------------
 		
-		if(com.equals("regist.do")) {
+		if(com.equals("d_regist.do")) {
 			command = new DRegistCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
+		} else if (com.equals("d_regist_view.do")) {
+			command = new DRegistViewCommand();
+			command.execute(request, response);
+			viewPage = "/device/regist_view.jsp";
 		}
 		
 //------------------find---------------------
@@ -157,7 +163,6 @@ public class BFrontController extends HttpServlet {
 			command = new FContentCommand();
 			command.execute(request,response);
 			viewPage = "/find/content_view.jsp";
-			
 		} else if (com.equals("f_search_view.do")) {
 			viewPage = "/find/search_view.jsp";
 		} else if (com.equals("f_write_view.do")) {
@@ -174,6 +179,10 @@ public class BFrontController extends HttpServlet {
 			command = new FModifyCommand();
 			command.execute(request, response);
 			viewPage = "f_list.do";
+		} else if (com.equals("f_search_list.do")) {
+			command = new FSearchCommand();
+			command.execute(request, response);
+			viewPage = "/find/list_view.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

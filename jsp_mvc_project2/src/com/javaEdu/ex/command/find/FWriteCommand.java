@@ -19,15 +19,16 @@ public class FWriteCommand implements Command {
 		
 		String image = request.getParameter("image");
 		String model = request.getParameter("model");
-		String sido = request.getParameter("sido");
-		String gugun = request.getParameter("gugun");
+		String latitude = request.getParameter("latitude");
+		String longitude = request.getParameter("longitude");
+		String addr = request.getParameter("addr");
+		String addrDetail = request.getParameter("addrDetail");
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
 		String deviceId = request.getParameter("deviceId");
 		
-		String area = sido +" "+ gugun ;
 		FDao dao = FDao.getInstance();
-		dao.write(image, model, area, title, contents, writerId, deviceId );
+		dao.write(image, model, latitude, longitude, addr, addrDetail, title, contents, writerId, deviceId );
 		
 		
 	}

@@ -23,11 +23,11 @@
 </div>
 <form action = "write_view.jsp" method = "post">
 	습득하신 장소를 알려주세요<br/>
-	선택된 주소 : <span id = "address2" ></span><br/>
-	상세 장소 : <input type = "text" name = "add_detail" value = "공원입구 벤치 아래 "></input>
+	선택된 주소 : <span id = "address2" >지도를 클릭하세요.</span><br/>
+	상세 장소 : <input type = "text" name = "addrDetail" placeholder = "예)공원입구 벤치 아래 "></input>
 	<input type = "hidden" id = "latitude" name = "latitude"></input>
 	<input type = "hidden" id = "longitude" name = "longitude" ></input>
-	<input type = "hidden" id = "address" name = "address" ></input>
+	<input type = "hidden" id = "address" name = "addr" ></input>
 	<input type = "hidden" name = "dId" value = "${dId}">
 	<br/>
 	<input type = "submit" value = "입력" >

@@ -8,28 +8,33 @@ public class FDto {
 	private String image;
 	private String model;
 	private Timestamp rdate;
-	private String area;
+	private String latitude;
+	private String longitude;
+	private String addr;
+	private String addrDetail;
 	private String title;
 	private String contents;
 	private String findornot;
 	private String writerId;
 	private String deviceId;
 	
-	public FDto(int num, String image, String model, Timestamp rdate, String area, String title, String contents,
-			String findornot, String writerId, String deviceId) {
+	public FDto(int num, String image, String model, Timestamp rdate, String latitude, String longitude, String addr,
+			String addrDetail, String title, String contents, String findornot, String writerId, String deviceId) {
 		super();
 		this.num = num;
 		this.image = image;
 		this.model = model;
 		this.rdate = rdate;
-		this.area = area;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.addr = addr;
+		this.addrDetail = addrDetail;
 		this.title = title;
 		this.contents = contents;
 		this.findornot = findornot;
 		this.writerId = writerId;
 		this.deviceId = deviceId;
 	}
-	
 	public int getNum() {
 		return num;
 	}
@@ -54,11 +59,29 @@ public class FDto {
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate;
 	}
-	public String getArea() {
-		return area;
+	public String getLatitude() {
+		return latitude;
 	}
-	public void setArea(String area) {
-		this.area = area;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getAddrDetail() {
+		return addrDetail;
+	}
+	public void setAddrDetail(String addrDetail) {
+		this.addrDetail = addrDetail;
 	}
 	public String getTitle() {
 		return title;
@@ -90,5 +113,4 @@ public class FDto {
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
-	
 }

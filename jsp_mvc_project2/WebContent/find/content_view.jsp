@@ -14,7 +14,8 @@
 			<tr><td>이미지</td><td>${content_view.image}</td></tr>		
 			<tr><td>모델</td><td>${content_view.model}</td></tr>		
 			<tr><td>등록일</td><td>${content_view.rdate}</td></tr>		
-			<tr><td>지역</td><td>${content_view.area}</td></tr>		
+			<tr><td>지역</td><td>${content_view.addr}</td></tr>		
+			<tr><td>지역상세</td><td>${content_view.addrDetail}</td></tr>		
 			<tr><td>제목</td><td>${content_view.title}</td></tr>		
 			<tr><td>내용</td><td>${content_view.contents}</td></tr>		
 			<tr><td>찾았는지 여부</td><td>${content_view.findornot}</td></tr>		

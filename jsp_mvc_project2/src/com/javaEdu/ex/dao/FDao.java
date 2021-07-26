@@ -32,24 +32,27 @@ public class FDao {
 		return instance;
 	}
 	
-	public void write(String image, String model, String area, String title, String contents, String writerId, String deviceId) {
+	public void write(String image, String model, String latitude, String longitude, String addr, String addrDetail, String title, String contents, String writerId, String deviceId) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String findOrNot = "NORMAL";
 		
 		try {
 			con = dataSource.getConnection();
-			String query = "insert into find_board (num, image, model, area, title, contents, findornot, writerId, deviceId) values "
-					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into find_board (num, image, model, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId) values "
+					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = con.prepareStatement(query);
 			ps.setString(1, image);
 			ps.setString(2, model);
-			ps.setString(3, area);
-			ps.setString(4, title);
-			ps.setString(5, contents);
-			ps.setString(6, findOrNot);
-			ps.setString(7, writerId);
-			ps.setString(8, deviceId);
+			ps.setString(3, latitude);
+			ps.setString(4, longitude);
+			ps.setString(5, addr);
+			ps.setString(6, addrDetail);
+			ps.setString(7, title);
+			ps.setString(8, contents);
+			ps.setString(9, findOrNot);
+			ps.setString(10, writerId);
+			ps.setString(11, deviceId);
 			ps.executeUpdate();
 			
 		} catch(Exception e) {
@@ -73,7 +76,7 @@ public class FDao {
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select num, image, model, rdate, area, title, contents, findornot, writerId, deviceId from find_board order by num desc";
+			String query = "select num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId from find_board order by num desc";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -82,14 +85,17 @@ public class FDao {
 				String image = rs.getString("image");
 				String model = rs.getString("model");
 				Timestamp rdate = rs.getTimestamp("rdate");
-				String area = rs.getString("area");
+				String latitude = rs.getString("latitude");
+				String longitude = rs.getString("longitude");
+				String addr = rs.getString("addr");
+				String addrDetail = rs.getString("addrDetail");
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
 				String findornot = rs.getString("findornot");
 				String writerId = rs.getString("writerId");
 				String deviceId = rs.getString("deviceId");
 				
-				FDto dto = new FDto(num, image, model, rdate, area, title, contents, findornot, writerId, deviceId);
+				FDto dto = new FDto(num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -130,14 +136,17 @@ public class FDao {
 				String image = rs.getString("image");
 				String model = rs.getString("model");
 				Timestamp rdate = rs.getTimestamp("rdate");
-				String area = rs.getString("area");
+				String latitude = rs.getString("latitude");
+				String longitude = rs.getString("longitude");
+				String addr = rs.getString("addr");
+				String addrDetail = rs.getString("addrDetail");
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
 				String findornot = rs.getString("findornot");
 				String writerId = rs.getString("writerId");
 				String deviceId = rs.getString("deviceId");
 				
-				dto = new FDto(num, image, model, rdate, area, title, contents, findornot, writerId, deviceId);
+				dto = new FDto(num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -191,7 +200,7 @@ public class FDao {
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select num, image, model, rdate, area, title, contents, findornot, writerId, deviceId from find_board where area = ? order by num desc";
+			String query = "select num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId from find_board where area = ? order by num desc";
 			ps = con.prepareStatement(query);
 			ps.setString(1, sArea);
 			rs = ps.executeQuery();
@@ -201,14 +210,17 @@ public class FDao {
 				String image = rs.getString("image");
 				String model = rs.getString("model");
 				Timestamp rdate = rs.getTimestamp("rdate");
-				String area = rs.getString("area");
+				String latitude = rs.getString("latitude");
+				String longitude = rs.getString("area");
+				String addr = rs.getString("addr");
+				String addrDetail = rs.getString("addrDetail");
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
 				String findornot = rs.getString("findornot");
 				String writerId = rs.getString("writerId");
 				String deviceId = rs.getString("deviceId");
 				
-				FDto dto = new FDto(num, image, model, rdate, area, title, contents, findornot, writerId, deviceId);
+				FDto dto = new FDto(num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {

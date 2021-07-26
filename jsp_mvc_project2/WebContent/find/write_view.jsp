@@ -27,9 +27,12 @@
 				<td>
 					위도: ${param.latitude}<br/>
 					경도:${param.longitude}<br/>
-					${param.address}<br/>
-					${param.add_detail}
-					<input type = "button" value = "주소검색" onclick = "javascript:window.location='selectAddress_view.jsp'">
+					${param.addr}<br/>
+					${param.addrDetail}
+					<input type = "hidden" name = "latitude" value = "${param.latitude}">
+					<input type = "hidden" name = "longitude" value = "${param.longitude}">
+					<input type = "hidden" name = "addr" value = "${param.addr}">
+					<input type = "hidden" name = "addrDetail" value = "${param.addrDetail}">
 				</td>
 			</tr>
 			<tr>

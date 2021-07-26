@@ -21,6 +21,18 @@
         <span id="centerAddr"></span>
     </div>
 </div>
+<form action = "write_view.jsp" method = "post">
+	습득하신 장소를 알려주세요<br/>
+	선택된 주소 : <span id = "address2" ></span><br/>
+	상세 장소 : <input type = "text" name = "add_detail" value = "공원입구 벤치 아래 "></input>
+	<input type = "hidden" id = "latitude" name = "latitude"></input>
+	<input type = "hidden" id = "longitude" name = "longitude" ></input>
+	<input type = "hidden" id = "address" name = "address" ></input>
+	<input type = "hidden" name = "dId" value = "${dId}">
+	<br/>
+	<input type = "submit" value = "입력" >
+	<input type = "button" value = "취소" onclick = "javascript:window.location='list_view.jsp'">
+</form>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6980627efdafc9b33ee3f2e602c8f9da&libraries=services"></script>
 <script>
@@ -61,6 +73,13 @@
 	            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
 	            infowindow.setContent(content);
 	            infowindow.open(map, marker);
+	            
+	            // -------------
+	            document.getElementById("address").innerText = result[0].address.address_name;
+	            document.getElementById("address2").innerText = result[0].address.address_name;
+	    	    document.getElementById("latitude").innerText = mouseEvent.latLng.getLat();
+	    	    document.getElementById("longitude").innerText = mouseEvent.latLng.getLng();
+	    	    // --------------
 	        }   
 	    });
 	});
@@ -95,5 +114,7 @@
 	    }    
 	}
 </script>
+
+
 </body>
 </html>

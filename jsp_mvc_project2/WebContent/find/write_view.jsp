@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,24 @@
 <body>
 	<table width = "500" cellpadding = "0" cellspacing = "0" border ="1">
 		<form action = "f_write.do" method = "post">
+			
+			<tr>
+				<td>일련번호</td>
+				<td>
+					${param.dId}
+					<input type = "hidden" name = "deviceId" value = "${param.dId}">
+				</td>
+			</tr>
+			<tr>
+				<td>습득장소</td>
+				<td>
+					위도: ${param.latitude}<br/>
+					경도:${param.longitude}<br/>
+					${param.address}<br/>
+					${param.add_detail}
+					<input type = "button" value = "주소검색" onclick = "javascript:window.location='selectAddress_view.jsp'">
+				</td>
+			</tr>
 			<tr>
 				<td>사진</td>
 				<td><input type = "file" name = "image" size= "50"></td>
@@ -27,23 +46,6 @@
 			          <option value="Buds">삼성 버즈</option>
 			          <option value="Others">기타</option>
 			        </select>
-				</td>
-			</tr>
-			<tr>
-				<td>일련번호</td>
-				<td>
-					${dId}
-					<input type = "hidden" name = "deviceId" value = "${dId}">
-				</td>
-			</tr>
-			<tr>
-				<td>습득장소</td>
-				<td>
-					습득장소를 지도에서 선택해주세요.<br/>
-					<input type = "button" value = "주소검색" onclick = "javascript:window.location='selectAddress_view.jsp'">
-					
-                  <select name="sido" class ="form-select"></select>
-                  <select name="gugun" class ="form-select mt-1"></select>
 				</td>
 			</tr>
 			<tr>

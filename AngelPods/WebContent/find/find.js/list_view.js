@@ -6,6 +6,7 @@ var titles = document.getElementsByClassName("f_title");
 var contents = document.getElementsByClassName("f_contents");
 var latitudes = document.getElementsByClassName("f_latitudes");
 var longitudes = document.getElementsByClassName("f_longitudes");
+var images = document.getElementsByClassName("f_image");
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
@@ -27,7 +28,8 @@ for (var i = 0; i< latitudes.length;i++){
      '        </div>' + 
      '        <div class="body">' + 
      '            <div class="img">' +
-     '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+//     '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+     				  images[i].innerHTML +
      '           </div>' + 
      '            <div class="desc">' + 
      '                <div class="ellipsis">'+

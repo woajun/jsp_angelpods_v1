@@ -3,6 +3,7 @@ package com.javaEdu.ex.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -10,7 +11,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.javaEdu.ex.dto.BDto;
 import com.javaEdu.ex.dto.FDto;
 
 public class FDao {
@@ -32,39 +32,56 @@ public class FDao {
 		return instance;
 	}
 	
-	public void write(String image, String model, String latitude, String longitude, String addr, String addrDetail, String title, String contents, String writerId, String deviceId) {
+	public int write(String image, String model, String latitude, String longitude, String addr, String addrDetail, String title, String contents, String writerId, String deviceId) {
 		Connection con = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
+		
+		//TODO findornot 값 정의
 		String findOrNot = "NORMAL";
+		
+		//TODO 쭌 : select와 insert를 함께 사용해서 트랜잭션으로 문제 생길 수 있고 해답은 to 트랜잭션 공부할 것
+		int num = -1;
+		try {
+			con = dataSource.getConnection();
+			String sqlIdentifier = "select FIND_BOARD_SEQ.NEXTVAL from dual";
+			pstmt = con.prepareStatement(sqlIdentifier);
+			ResultSet rsNum = pstmt.executeQuery();
+			if (rsNum.next()) {
+				num = rsNum.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		try {
 			con = dataSource.getConnection();
 			String query = "insert into find_board (num, image, model, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId) values "
-					+ "(find_board_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			ps = con.prepareStatement(query);
-			ps.setString(1, image);
-			ps.setString(2, model);
-			ps.setString(3, latitude);
-			ps.setString(4, longitude);
-			ps.setString(5, addr);
-			ps.setString(6, addrDetail);
-			ps.setString(7, title);
-			ps.setString(8, contents);
-			ps.setString(9, findOrNot);
-			ps.setString(10, writerId);
-			ps.setString(11, deviceId);
-			ps.executeUpdate();
-			
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, image);
+			pstmt.setString(3, model);
+			pstmt.setString(4, latitude);
+			pstmt.setString(5, longitude);
+			pstmt.setString(6, addr);
+			pstmt.setString(7, addrDetail);
+			pstmt.setString(8, title);
+			pstmt.setString(9, contents);
+			pstmt.setString(10, findOrNot);
+			pstmt.setString(11, writerId);
+			pstmt.setString(12, deviceId);
+			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(ps != null) ps.close();
+				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
+		return num;
 	}
 	
 	public ArrayList<FDto> list() {
@@ -237,5 +254,29 @@ public class FDao {
 			}
 		}
 		return dtos;
+	}
+
+	public void setThumbnailImage(int boardNum, String imageSystemName) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String query = "update find_board set image = ? where num = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, imageSystemName);
+			pstmt.setInt(2, boardNum);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 }

@@ -7,13 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type = "text/javascript" src="find.js/jquery-3.6.0.min.js"></script>
-<script type = "text/javascript" src="find.js/find.address.js"></script>
+<script type = "text/javascript" src="find.js/write_view.js"></script>
 
 </head>
 <body>
 	<table width = "500" cellpadding = "0" cellspacing = "0" border ="1">
-		<form action = "f_write.do" method = "post">
+		<form action = "f_write.do" method = "post" enctype = "multipart/form-data">
 			
 			<tr>
 				<td>일련번호</td>
@@ -37,7 +36,8 @@
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td><input type = "file" name = "image" size= "50"></td>
+				<td><input type="file" name = "image" id="image" accept="image/*" onchange="image_preview(event)"/> 
+				<div id="image_container"></div></td>
 			</tr>
 			<tr>
 				<td>모델</td>

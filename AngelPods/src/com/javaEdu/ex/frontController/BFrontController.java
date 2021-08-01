@@ -154,7 +154,7 @@ public class BFrontController extends HttpServlet {
 		} else if (com.equals("f_write.do")) {
 			command = new FWriteCommand();
 			command.execute(request, response);
-			viewPage = "f_list.do";
+			viewPage = "/find/write_viewOk.jsp";
 		} else if (com.equals("f_list.do")) {
 			command = new FListCommand();
 			command.execute(request, response);

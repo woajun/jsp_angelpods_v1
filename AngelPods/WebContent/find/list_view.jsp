@@ -103,7 +103,10 @@ if(request.getAttribute("f_list") == null){ %>
 		<c:forEach items = "${list}" var="dto">
 		<tr>
 			<td><a class = "f_num" href = "f_content_view.do?Num=${dto.num}">${dto.num}</a></td>
-			<td><a class = "f_image" href = "f_content_view.do?Num=${dto.num}">${dto.image}</a></td>
+			
+			<td><a class = "f_image" href = "f_content_view.do?Num=${dto.num}">
+			<img src = "${directory}${dto.image}" width=73px height=70px></a></td>
+			
 			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.rdate}</a></td>
 			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.writerId}</a></td>
 			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.deviceId}</a></td>

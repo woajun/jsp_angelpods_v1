@@ -20,7 +20,7 @@
 		<%-- <a href = "member_withdraw.do?id=${id}">회원탈퇴</a> --%>
 		<a href = "membersAll.do">모든 회원 정보보기</a>
 		<a href = "../device/regist_view.jsp">기기 등록</a>
-		<a href = "../find/list_view.jsp">습득 게시글 보기</a>
+		<a href = "../board/list_view.jsp">습득 게시글 보기</a>
 	</form>
 	
 </body>

@@ -7,13 +7,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class FImageDao {
+public class ImagesDao {
 
 	DataSource dataSource;
 	
-	private static FImageDao instance = new FImageDao();
+	private static ImagesDao instance = new ImagesDao();
 	
-	private FImageDao() {
+	private ImagesDao() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
@@ -24,7 +24,7 @@ public class FImageDao {
 		}
 	}
 	
-	public static FImageDao getInstance() {
+	public static ImagesDao getInstance() {
 		return instance;
 	}
 	

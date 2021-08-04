@@ -7,42 +7,42 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table width="500" cellpadding="0" cellspacing ="0" border="1">
-		<form action = "modify.do" method = "post">
+
+<script type = "text/javascript" src="find.js/content_view.js"></script>
+
+	<form action = "f_delete.do" method = "post" name="del_frm">
+		<input type = "hidden" name="fbNum" value="${fbDto.fbNum }">
+
+
+		<table width="500" cellpadding="0" cellspacing ="0" border="1">
+		
+			<tr><td>fb_num</td><td><div class = "fbNum" >${fbDto.fbNum}</div></td></tr>
+			<tr><td>userId</td><td><div class = "userId" >${fbDto.userId}</div></td></tr>
+			<tr><td>c_num</td><td><div class = "cNum" >${fbDto.cNum}</div></td></tr>
+			<tr><td>cd_num</td><td><div class = "cdNum" >${fbDto.cdNum}</div></td></tr>
 			
-			<tr><td>번호</td><td>${content_view.num}</td></tr>		
-			<tr><td>이미지</td><td>${content_view.image}</td></tr>		
-			<tr><td>모델</td><td>${content_view.model}</td></tr>		
-			<tr><td>등록일</td><td>${content_view.rdate}</td></tr>		
-			<tr><td>지역</td><td>${content_view.addr}</td></tr>		
-			<tr><td>지역상세</td><td>${content_view.addrDetail}</td></tr>		
-			<tr><td>제목</td><td>${content_view.title}</td></tr>		
-			<tr><td>내용</td><td>${content_view.contents}</td></tr>		
-			<tr><td>찾았는지 여부</td><td>${content_view.findornot}</td></tr>		
-			<tr><td>댓글</td>
-				<td>
-					<table width = "400" callpadding = "0" cellspacing = "0" border = "1">
-						<tr>
-							<td>아이디</td>
-							<td>여기에 입력하세요</td>
-						</tr>
-						<tr><td>홍당무</td><td>아 이거 제꺼 같은데 ㅜㅜ</td></tr>
-						<tr><td>토르</td><td>뮬니르!</td></tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="수정">
-				&nbsp;&nbsp;
+			<tr><td>thumbnailImage</td><td><div class = "thumbnailImage" >
+			<img src = "${directory}${fbDto.thumbnailImage}" width=73px height=70px></div></td></tr>
+			
+			<tr><td>timestamp</td><td><div class = "timestamp" >${fbDto.timestamp}</div></td></tr>
+			<tr><td>addr</td><td><div class = "addr" >${fbDto.addr}</div></td></tr>
+			<tr><td>addrDetail</td><td><div class = "addrDetail" >${fbDto.addrDetail}</div></td></tr>
+			<tr><td>title</td><td><div class = "title" >${fbDto.title}</div></td></tr>
+			<tr><td>contents</td><td><div class = "contents" >${fbDto.contents}</div></td></tr>
+			<tr><td>sn</td><td><div class = "sn" >${fbDto.sn}</div></td></tr>
+			<tr><td>lat</td><td><input type="hidden" class = "lat" value="${fbDto.lat}"></input></td></tr>
+			<tr><td>lon</td><td><input type="hidden" class = "lon" value="${fbDto.lon}"></input></td></tr>
+			<tr><td>hit</td><td><div class = "hit" >${fbDto.hit}</div></td></tr>
+			<tr><td>chat_hit</td><td><div class = "chatHit" >${fbDto.chatHit}</div></td></tr>
+			<tr><td>f_state</td><td><div class = "fState" >${fbDto.fState}</div></td></tr>
+			
+			<tr><td colspan="2">
+				<input type = "submit" value ="삭제" onclick="deleteFb()">
+				<a href = "f_modify_view.do?fbNum=${fbDto.fbNum}">수정</a>
 				<a href = "f_list.do">목록보기</a>
-				&nbsp;&nbsp;
-				<a href = "f_delete.do?num=${content_view.num}">삭제</a>
-				&nbsp;&nbsp;
-				<a href = "f_modify_view.do?num=${content_view.num}">수정</a>
-				&nbsp;&nbsp;
-				<a href = "f_delete.do?num=${content_view.num}">쪽지보내기</a>
-			</tr>
-		</form>
-	</table>
+				<a href = "f_delete.do?fbNum=${fbDto.fbNum}">채팅으로 대화하기</a>
+			</td></tr>
+		</table>
+	</form>
 </body>
 </html>

@@ -15,10 +15,10 @@ public class MLoginCommand implements Command {
 //		// TODO Auto-generated method stub
 		MemberDao dao = MemberDao.getInstance();
 
-		String id = request.getParameter("id");
+		String userId = request.getParameter("userId");
 		String pw = request.getParameter("pw");
 		
-		int checkNum = dao.userCheck(id, pw);
+		int checkNum = dao.userCheck(userId, pw);
 		int ri= 0;
 			
 		if(checkNum == -1) {
@@ -26,13 +26,13 @@ public class MLoginCommand implements Command {
 		}else if (checkNum == 0 ) {
 			ri = 3;
 		}else if (checkNum == 1) {
-			MemberDto dto = dao.getMember(id);
+			MemberDto dto = dao.getMember(userId);
 			if(dto == null) {
 				ri = 4;
 			} else {
 				HttpSession session = request.getSession();
 				String name = dto.getName();
-				session.setAttribute("id", id);
+				session.setAttribute("userId", userId);
 				session.setAttribute("name", name);
 				session.setAttribute("ValidMem", "yes");
 				ri = 1;

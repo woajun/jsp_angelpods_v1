@@ -15,21 +15,21 @@ public class MJoinCommand implements Command {
 		MemberDto dto = new MemberDto();
 		MemberDao dao = MemberDao.getInstance();
 		
-		dto.setId(request.getParameter("id"));
+		dto.setUserId(request.getParameter("userId"));
 		dto.setPw(request.getParameter("pw"));
 		dto.setName(request.getParameter("name"));
 		dto.seteMail(request.getParameter("eMail"));
-		dto.setSido(request.getParameter("sido"));
-		dto.setGugun(request.getParameter("gugun"));
-		dto.setPhone(request.getParameter("phone"));
+		dto.setAddr(request.getParameter("addr"));
+		dto.setLat(request.getParameter("lat"));
+		dto.setLon(request.getParameter("lon"));
 		
 		int ri = 0;
-		if(dao.confirmId(dto.getId()) == 1){
+		if(dao.confirmUserId(dto.getUserId()) == 1){
 			ri = 1;
 		} else {
 			int ri2 = dao.insertMember(dto);
 			if(ri2 == 1) {
-				request.setAttribute("id", dto.getId());
+				request.setAttribute("userId", dto.getUserId());
 				ri = 2;
 			} else {
 				ri = 0;

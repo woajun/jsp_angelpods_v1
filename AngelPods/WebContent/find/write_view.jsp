@@ -12,22 +12,14 @@
 </head>
 <body>
 	<table width = "500" cellpadding = "0" cellspacing = "0" border ="1">
-		<form action = "f_write.do" method = "post" enctype = "multipart/form-data">
-			
-			<tr>
-				<td>일련번호</td>
-				<td>
-					${param.dId}
-					<input type = "hidden" name = "deviceId" value = "${param.dId}">
-				</td>
-			</tr>
+		<form action = "f_write_action.do" method = "post" enctype = "multipart/form-data">
 			<tr>
 				<td>습득장소</td>
 				<td>
 					위도: ${param.latitude}<br/>
 					경도:${param.longitude}<br/>
 					${param.addr}<br/>
-					${param.addrDetail}
+					${param.addrDetail}<br/>
 					<input type = "hidden" name = "latitude" value = "${param.latitude}">
 					<input type = "hidden" name = "longitude" value = "${param.longitude}">
 					<input type = "hidden" name = "addr" value = "${param.addr}">
@@ -35,21 +27,20 @@
 				</td>
 			</tr>
 			<tr>
+				<td>카테고리</td>
+				<td>
+					대분류:${param.cNum}<br/>
+					소분류:${param.cdNum}<br/>
+					${param.sn}<br/>
+					<input type = "hidden" name = "cNum" value = "${param.cNum}">
+					<input type = "hidden" name = "cdNum" value = "${param.cdNum}">
+					<input type = "hidden" name = "sn" value = "${param.sn}">
+				</td>
+			</tr>
+			<tr>
 				<td>사진</td>
 				<td><input type="file" name = "image" id="image" accept="image/*" onchange="image_preview(event)"/> 
 				<div id="image_container"></div></td>
-			</tr>
-			<tr>
-				<td>모델</td>
-				<td>
-			        <select id="myselection" class="form-control" name = "model">
-			          <option value="choose">모델 선택</option>
-			          <option value="Pro">에어팟 프로</optzion>
-			          <option value="Airpods">에어팟</option>
-			          <option value="Buds">삼성 버즈</option>
-			          <option value="Others">기타</option>
-			        </select>
-				</td>
 			</tr>
 			<tr>
 				<td>제목</td>

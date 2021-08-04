@@ -3,7 +3,6 @@ package com.javaEdu.ex.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -23,19 +22,19 @@ public class MemberDao {
 		return instance;
 	}
 	
-	public int userCheck(String id, String pw) {
+	public int userCheck(String userId, String pw) {
 		int ri = 0;
 		String dbPw;
 		
-		Connection connection = null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
-		String query = "select pw from members where id = ?";
+		String query = "select pw from member where userId = ?";
 		
 		try {
-			connection = getConnection();
-			pstmt = connection.prepareStatement(query);
-			pstmt.setString(1,id);
+			con = getConnection();
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,userId);
 			set = pstmt.executeQuery();
 			
 			if(set.next()) {
@@ -54,7 +53,7 @@ public class MemberDao {
 			try {
 				set.close();
 				pstmt.close();
-				connection.close();
+				con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -62,37 +61,39 @@ public class MemberDao {
 		return ri;
 	}
 	
-	public MemberDto getMember(String id) {
-		Connection connection = null;
+	public MemberDto getMember(String userId) {
+		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet set = null;
-		String query = "select * from members where id = ?";
+		ResultSet rs = null;
+		String query = "select * from member where userId = ?";
 		MemberDto dto = null;
 		
 		try {
-			connection = getConnection();
-			pstmt = connection.prepareStatement(query);
-			pstmt.setString(1, id);
-			set = pstmt.executeQuery();
+			con = getConnection();
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
 			
-			if(set.next()) {
+			if(rs.next()) {
 				dto = new MemberDto();
-				dto.setId(set.getString("id"));
-				dto.setPw(set.getString("pw"));
-				dto.setName(set.getString("name"));
-				dto.seteMail(set.getString("eMail"));
-				dto.setrDate(set.getTimestamp("rDate"));
-				dto.setSido(set.getString("sido"));
-				dto.setGugun(set.getString("gugun"));
-				dto.setPhone(set.getString("phone"));
+				dto.setUserId(rs.getString("userId"));
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.seteMail(rs.getString("eMail"));
+				dto.setrDate(rs.getTimestamp("rDate"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setRankId(rs.getInt("rankid"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLon(rs.getString("lon"));
+				dto.setProfilImage(rs.getString("profilImage"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				set.close();
+				rs.close();
 				pstmt.close();
-				connection.close();
+				con.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -123,18 +124,18 @@ public class MemberDao {
 		return connection;
 	}
 	
-	public int confirmId(String id) {
+	public int confirmUserId(String userId) {
 		int ri = 0;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet set = null;
-		String query = "select id from members where id = ?";
+		String query = "select userId from member where userId = ?";
 		
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, id);
+			pstmt.setString(1, userId);
 			set = pstmt.executeQuery();
 			if(set.next()) {
 				ri = 1;
@@ -161,18 +162,20 @@ public class MemberDao {
 		
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		String query = "insert into members (id, pw, name, email, sido, gugun, phone) values (?,?,?,?,?,?,?)";
+		String query = "insert into member "
+				+ "(userId, pw, name, email, addr, lat, lon, profilImage) values (?,?,?,?,?,?,?,?)";
 		
 		try {
 			connection = getConnection();
 			pstmt = connection.prepareStatement(query);
-			pstmt.setString(1, dto.getId());
+			pstmt.setString(1, dto.getUserId());
 			pstmt.setString(2, dto.getPw());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.geteMail());
-			pstmt.setString(5, dto.getSido());
-			pstmt.setString(6, dto.getGugun());
-			pstmt.setString(7, dto.getPhone());
+			pstmt.setString(5, dto.getAddr());
+			pstmt.setString(6, dto.getLat());
+			pstmt.setString(7, dto.getLon());
+			pstmt.setString(8, dto.getProfilImage());
 			pstmt.executeUpdate();
 			ri = 1;
 		} catch (Exception e) {
@@ -188,13 +191,13 @@ public class MemberDao {
 		return ri;
 	}
 	
-	public ArrayList<MemberDto> membersAll(){
+	public ArrayList<MemberDto> memberAll(){
 		
 		ArrayList<MemberDto> dtos = new ArrayList<MemberDto>();
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from members";
+		String query = "select * from member";
 		
 		try {
 			connection = getConnection();
@@ -203,14 +206,16 @@ public class MemberDao {
 
 			while (rs.next()) {
 				MemberDto dto = new MemberDto();
-				dto.setId(rs.getString("id"));
+				dto.setUserId(rs.getString("userId"));
 				dto.setPw(rs.getString("pw"));
 				dto.setName(rs.getString("name"));
 				dto.seteMail(rs.getString("eMail"));
 				dto.setrDate(rs.getTimestamp("rDate"));
-				dto.setSido(rs.getString("sido"));
-				dto.setGugun(rs.getString("gugun"));
-				dto.setPhone(rs.getString("phone"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setRankId(rs.getInt("rankid"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLon(rs.getString("lon"));
+				dto.setProfilImage(rs.getString("profileImage"));
 				dtos.add(dto);
 			}
 		
@@ -230,8 +235,8 @@ public class MemberDao {
 		
 	}
 	
-	public MemberDto contentView(String mId) {
-		MemberDto dto = null;
+	public MemberDto contentView(String muserId) {
+		MemberDto dto = new MemberDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -239,21 +244,21 @@ public class MemberDao {
 		try {
 			con = getConnection();
 			
-			String query = "select * from members where id = ?";
+			String query = "select * from member where userId = ?";
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, mId);
+			pstmt.setString(1, muserId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				String id = rs.getString("id");
-				String pw = rs.getString("pw");
-				String name = rs.getString("name");
-				String eMail = rs.getString("eMail");
-				Timestamp rDate = rs.getTimestamp("rDate");
-				String sido = rs.getString("sido");
-				String gugun = rs.getString("gugun");
-				String phone = rs.getString("phone");
-				
-				dto = new MemberDto(id, pw, name, eMail, rDate, sido, gugun, phone);
+				dto.setUserId(rs.getString("userId"));
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.seteMail(rs.getString("eMail"));
+				dto.setrDate(rs.getTimestamp("rDate"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setRankId(rs.getInt("rankid"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLon(rs.getString("lon"));
+				dto.setProfilImage(rs.getString("profileImage"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -270,7 +275,8 @@ public class MemberDao {
 		return dto;
 	}
 
-	public int modify(String mId, String pw, String name, String eMail, String sido, String gugun, String phone) {
+	public int modify(String userId, String pw, String name, String eMail, String addr, 
+			String lat, String lon, String profilImage) {
 		// TODO Auto-generated method stub
 
 		int ri = 0;
@@ -280,15 +286,16 @@ public class MemberDao {
 		try {
 			con = getConnection();
 			
-			String query = "update members set pw = ?, name = ?, eMail = ?, sido = ?, gugun = ?, phone = ? where id = ?";
+			String query = "update member set pw = ?, name = ?, eMail = ?, addr = ?, lat = ?, lon = ?, profilImage = ? where userId = ?";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, pw);
 			pstmt.setString(2, name);
 			pstmt.setString(3, eMail);
-			pstmt.setString(4, sido);
-			pstmt.setString(5, gugun);
-			pstmt.setString(6, phone);
-			pstmt.setString(7, mId);
+			pstmt.setString(4, addr);
+			pstmt.setString(5, lat);
+			pstmt.setString(6, lon);
+			pstmt.setString(7, profilImage);
+			pstmt.setString(8, userId);
 			ri = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -305,7 +312,7 @@ public class MemberDao {
 		return ri;
 	}
 
-	public int delete(String id) {
+	public int delete(String userId) {
 		// TODO Auto-generated method stub
 		
 		int ri = -1;
@@ -315,9 +322,9 @@ public class MemberDao {
 		try {
 			con = getConnection();
 			
-			String query = "delete from members where id = ?";
+			String query = "delete from member where userId = ?";
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, id);
+			pstmt.setString(1, userId);
 			ri = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -335,4 +342,6 @@ public class MemberDao {
 		System.out.println("delete" + ri);
 		return ri;
 	}
+
+
 }

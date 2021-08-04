@@ -85,44 +85,50 @@ if(request.getAttribute("f_list") == null){ %>
 	
 	<table width ="1000" cellpadding = "0" cellspacing = "0" border = "1">
 		<tr>
-			<td>번호</td>
-			<td>이미지</td>
-			<td>등록일</td>
-			<td>글쓴사람</td>
-			<td>일련번호</td>
-			<td>모델</td>
-			<td>지역</td>
-			<td>지역디테일</td>
-			<td>제목</td>
-			<td>내용</td>
-			<td>찾았는지여부</td>
-			<td>위도</td>
-			<td>경도</td>
+			<td>fb_num</td>
+			<td>userId</td>
+			<td>c_num</td>
+			<td>cd_num</td>
+			<td>thumbnailImage</td>
+			<td>timestamp</td>
+			<td>addr</td>
+			<td>addrDetail</td>
+			<td>title</td>
+			<td>contents</td>
+			<td>sn</td>
+			<td>lat</td>
+			<td>lon</td>
+			<td>hit</td>
+			<td>chat_hit</td>
+			<td>f_state</td>
 		</tr>	
 
 		<c:forEach items = "${list}" var="dto">
 		<tr>
-			<td><a class = "f_num" href = "f_content_view.do?Num=${dto.num}">${dto.num}</a></td>
+			<td><a class = "fbNum" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.fbNum}</a></td>
+			<td><a class = "userId" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.userId}</a></td>
+			<td><a class = "cNum" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.cNum}</a></td>
+			<td><a class = "cdNum" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.cdNum}</a></td>
 			
-			<td><a class = "f_image" href = "f_content_view.do?Num=${dto.num}">
-			<img src = "${directory}${dto.image}" width=73px height=70px></a></td>
+			<td><a class = "thumbnailImage" href = "f_content_view.do?fbNum=${dto.fbNum}">
+			<img src = "${directory}${dto.thumbnailImage}" width=73px height=70px></a></td>
 			
-			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.rdate}</a></td>
-			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.writerId}</a></td>
-			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.deviceId}</a></td>
-			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.model}</a></td>
-			<td><a class = "f_addr" href = "f_content_view.do?Num=${dto.num}">${dto.addr}</a></td>
-			<td><a class = "f_addrDetail" href = "f_content_view.do?Num=${dto.num}">${dto.addrDetail}</a></td>
-			<td><a class = "f_title" href = "f_content_view.do?Num=${dto.num}">${dto.title}</a></td>
-			<td><a class = "f_contents" href = "f_content_view.do?Num=${dto.num}">${dto.contents}</a></td>
-			<td><a href = "f_content_view.do?Num=${dto.num}">${dto.findornot}</a></td>
-			<td><input class = "f_latitudes" type = "text" value = "${dto.latitude}"></input></td>
-			<td><input class = "f_longitudes" type = "text" value = "${dto.longitude}"></input></td>
+			<td><a class = "timestamp" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.timestamp}</a></td>
+			<td><a class = "addr" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.addr}</a></td>
+			<td><a class = "addrDetail" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.addrDetail}</a></td>
+			<td><a class = "title" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.title}</a></td>
+			<td><a class = "contents" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.contents}</a></td>
+			<td><a class = "sn" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.sn}</a></td>
+			<td><input type="hidden" class = "lat" value="${dto.lat}"></input></td>
+			<td><input type="hidden" class = "lon" value="${dto.lon}"></input></td>
+			<td><a class = "hit" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.hit}</a></td>
+			<td><a class = "chatHit" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.chatHit}</a></td>
+			<td><a class = "fState" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.fState}</a></td>
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan = "10">
-			<input type = "button" value = "습득물 등록" onclick = "javascript:window.location='f_search_view.do'">
+			<td colspan = "16">
+			<input type = "button" value = "습득물 등록" onclick = "javascript:window.location='../find/write_category_view.jsp'">
 			<input type = "button" value = "메인화면" onclick = "javascript:window.location='../member/main.jsp'">
 			</td>
 		</tr>
@@ -131,7 +137,7 @@ if(request.getAttribute("f_list") == null){ %>
 	<div id="map" style="width:100%;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6980627efdafc9b33ee3f2e602c8f9da"></script>
-<script type="text/javascript" src="find.js/list_view.js"></script>
+<script type="text/javascript" src="board.js/list_view.js"></script>
 
 </body>
 </html>

@@ -4,34 +4,39 @@ import java.sql.Timestamp;
 
 public class MemberDto {
 
-	private String id;
+	private String userId;
 	private String pw;
 	private String name;
 	private String eMail;
 	private Timestamp rDate;
-	private String sido;
-	private String gugun;
-	private String phone;
-
-	public MemberDto() {
-	}
+	private String addr;
+	private int rankId;
+	private String lat;
+	private String lon;
+	private String profilImage;
 	
-	public MemberDto(String id, String pw, String name, String eMail, Timestamp rDate, String sido, String gugun, String phone) {
-		this.id = id;
+	public MemberDto() {}
+	
+	public MemberDto(String userId, String pw, String name, String eMail, Timestamp rDate, String addr, int rankId,
+			String lat, String lon, String profilImage) {
+		super();
+		this.userId = userId;
 		this.pw = pw;
 		this.name = name;
 		this.eMail = eMail;
 		this.rDate = rDate;
-		this.sido = sido;
-		this.gugun = gugun;
-		this.phone = phone;
+		this.addr = addr;
+		this.rankId = rankId;
+		this.lat = lat;
+		this.lon = lon;
+		this.profilImage = profilImage;
 	}
 	
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getPw() {
 		return pw;
@@ -57,22 +62,34 @@ public class MemberDto {
 	public void setrDate(Timestamp rDate) {
 		this.rDate = rDate;
 	}
-	public String getSido() {
-		return sido;
+	public String getAddr() {
+		return addr;
 	}
-	public void setSido(String sido) {
-		this.sido = sido;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
-	public String getGugun() {
-		return gugun;
+	public int getRankId() {
+		return rankId;
 	}
-	public void setGugun(String gugun) {
-		this.gugun = gugun;
+	public void setRankId(int rankId) {
+		this.rankId = rankId;
 	}
-	public String getPhone() {
-		return phone;
+	public String getLat() {
+		return lat;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLon() {
+		return lon;
+	}
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+	public String getProfilImage() {
+		return profilImage;
+	}
+	public void setProfilImage(String profilImage) {
+		this.profilImage = profilImage;
 	}
 }

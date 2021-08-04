@@ -12,9 +12,9 @@ public class MContentCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String mId = request.getSession().getAttribute("id").toString();
+		String id = request.getSession().getAttribute("id").toString();
 		MemberDao dao = MemberDao.getInstance();
-		MemberDto dto = dao.contentView(mId);
+		MemberDto dto = dao.contentView(id);
 		
 		request.setAttribute("mdto", dto);
 	}

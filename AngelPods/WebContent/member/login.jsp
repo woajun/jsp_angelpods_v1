@@ -13,7 +13,7 @@
 <body>
 	
 	<form action = "login.do" method = "post">
-		아이디 : <input type = "text" name = "id" value="${id}"> <br/>
+		아이디 : <input type = "text" name = "userId" value="${id}"> <br/>
 		비밀번호 : <input type = "password" name = "pw" ><br/>
 		<input type = "submit" value="로그인"> &nbsp; &nbsp;
 		<input type = "button" value ="회원가입" onclick="javascript:window.location='join.jsp'">

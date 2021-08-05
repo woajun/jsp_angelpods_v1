@@ -15,7 +15,7 @@ public class MPrintAll implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO 조회 권한 확인
 		MemberDao dao = MemberDao.getInstance();
-//		ArrayList<MemberDto> dtos = dao.membersAll();
-//		request.setAttribute("mList", dtos);
+		ArrayList<MemberDto> dto = dao.membersAll();
+		request.setAttribute("mList", dto);
 	}
 }

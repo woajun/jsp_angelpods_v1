@@ -191,7 +191,7 @@ public class MemberDao {
 		return ri;
 	}
 	
-	public ArrayList<MemberDto> memberAll(){
+	public ArrayList<MemberDto> membersAll(){
 		
 		ArrayList<MemberDto> dtos = new ArrayList<MemberDto>();
 		Connection connection = null;
@@ -215,7 +215,7 @@ public class MemberDao {
 				dto.setRankId(rs.getInt("rankid"));
 				dto.setLat(rs.getString("lat"));
 				dto.setLon(rs.getString("lon"));
-				dto.setProfilImage(rs.getString("profileImage"));
+				dto.setProfilImage(rs.getString("profilImage"));
 				dtos.add(dto);
 			}
 		

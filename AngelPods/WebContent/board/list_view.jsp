@@ -30,54 +30,49 @@ if(request.getAttribute("f_list") == null){ %>
     .info .link {color: #5085BB;}
 	</style>
 
-<script type = "text/javascript" src="find.js/jquery-3.6.0.min.js"></script>
-<script type = "text/javascript" src="find.js/find.address.js"></script>
-
 </head>
 <body>
 	<table width ="500" cellpadding = "0" cellspacing = "0" border = "1">
-		<form action = "f_search_list.do" method = "post">
-		<tr>
-        	<td>조회유형</td>
-        	<td>
-                  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" checked>
-                  <label class="btn btn-outline-secondary" for="option2">습득물</label>
-                  <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                  <label class="btn btn-outline-secondary" for="option3">분실물</label>
-			</td>
-		</tr>
-		<tr>
-			<td>모델</td>
-			<td>
-                <input type="checkbox" class="btn-check" name="model" id="mod1" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="mod1">전체</label>
-                <input type="checkbox" class="btn-check" name="model" id="mod2" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="mod2">에어팟</label>
-                <input type="checkbox" class="btn-check" name="model" id="mod3" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="mod3">에어팟 프로</label>
-                <input type="checkbox" class="btn-check" name="model" id="mod4" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="mod4">갤럭시 버즈</label>
-			</td>
-		</tr>
-		<tr>
-			<td>지역</td>
-			<td>
-                  <select name="sido" id="sido" class ="form-select"></select>
-                  <select name="gugun" id="gugun" class ="form-select mt-1"></select>
-            </td>
-		</tr>
-		<tr>
-			<td>키워드 검색</td>
-			<td>
-                  <input type="text" name = "keyword" class="form-control" placeholder="입력" aria-label="Input group example" aria-describedby="basic-addon1">
-			</td>
-		</tr>
-		<tr>
-			<td colspan ="2" >
-				<input type = "submit" value = "검색" >
-			</td>
-		</tr>
-	</form>
+		<form action = "" method = "post">
+			<tr>
+	        	<td>조회유형</td>
+	        	<td>
+	                  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" checked>
+	                  <label class="btn btn-outline-secondary" for="option2">습득물</label>
+	                  <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+	                  <label class="btn btn-outline-secondary" for="option3">분실물</label>
+				</td>
+			</tr>
+			<tr>
+				<td>카테고리</td>
+				<td>
+		        	<select id="cNum" name = "cNum">
+				        <option value="0">분류 선택</option>
+				        <option value="1">무선이어폰</option>
+				        <option value="2">지갑</option>
+				        <option value="3">카드</option>
+			          	<option value="4">애완동물</option>
+			        </select>
+			        <select id="cdNum" name = "cdNum">
+			            <option value="0">분류 상세</option>
+			            <option value="1">애플-에어팟1,2세대</option>
+			            <option value="2">애플-에어팟 프로</option>
+			            <option value="3">삼성-버즈</option>
+			        </select>
+				</td>
+			</tr>
+			<tr>
+				<td>지역</td>
+				<td>
+					<!-- TODO 1. 행정동 검색기능 2. 현재 위치 행정동 -->
+	            </td>
+			</tr>
+			<tr>
+				<td colspan ="2" >
+					<input type = "submit" value = "검색" >
+				</td>
+			</tr>
+		</form>
 	</table>
 	<br/>
 	
@@ -135,8 +130,8 @@ if(request.getAttribute("f_list") == null){ %>
 	
 	<div id="map" style="width:100%;height:350px;"></div>
 
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6980627efdafc9b33ee3f2e602c8f9da"></script>
 <script type="text/javascript" src="board.js/list_view.js"></script>
-
 </body>
 </html>

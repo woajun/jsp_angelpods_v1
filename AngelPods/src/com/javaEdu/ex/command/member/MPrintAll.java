@@ -13,9 +13,9 @@ public class MPrintAll implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TODO 조회 권한 확인
 		MemberDao dao = MemberDao.getInstance();
-		ArrayList<MemberDto> dtos = dao.membersAll();
-		request.setAttribute("mList", dtos);
+//		ArrayList<MemberDto> dtos = dao.membersAll();
+//		request.setAttribute("mList", dtos);
 	}
 }

@@ -17,10 +17,9 @@
 		비밀번호 확인 : <input type = "password" name = "pw_check" size = "20"><br/>
 		닉네임 : <input type = "text" name = "name" size ="20"><br/>
 		메일 : <input type = "text" name = "eMail" size = "20"><br/>
-		동네 : <input type = "button" name="" value="동네확인">
 		<input type="checkbox" name="" />위치정보제공동의<br/>
-		<div id = "addr_view" ></div>
-		<input type = "text" id ="addr" name = "addr" /><br/>
+		동네 : <input type = "text" id ="addr" name = "addr" />
+		<input type = "button" value="동네확인" onclick="addrbtn()"><br/>
 		위도<input type = "text" id ="lat" name = "lat" /><br/>
 		경도<input type = "text" id ="lon" name = "lon" /><br/>
 			

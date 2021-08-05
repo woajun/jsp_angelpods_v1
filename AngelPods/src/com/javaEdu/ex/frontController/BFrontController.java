@@ -10,23 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaEdu.ex.command.Command;
-import com.javaEdu.ex.command.board.BContentCommand;
-import com.javaEdu.ex.command.board.BDeleteCommand;
-import com.javaEdu.ex.command.board.BListCommand;
-import com.javaEdu.ex.command.board.BModifyCommand;
-import com.javaEdu.ex.command.board.BReplyCommand;
-import com.javaEdu.ex.command.board.BReplyViewCommand;
-import com.javaEdu.ex.command.board.BWriteCommand;
-import com.javaEdu.ex.command.device.DRegistCommand;
-import com.javaEdu.ex.command.device.DRegistViewCommand;
-import com.javaEdu.ex.command.device.DSearchCommand;
 import com.javaEdu.ex.command.find.FContentCommand;
 import com.javaEdu.ex.command.find.FDeleteCommand;
 import com.javaEdu.ex.command.find.FListCommand;
 import com.javaEdu.ex.command.find.FModifyCommand;
-import com.javaEdu.ex.command.find.FSearchCommand;
-import com.javaEdu.ex.command.find.FWriteCommand;
-import com.javaEdu.ex.command.find.FWriteViewCommand;
+import com.javaEdu.ex.command.find.FModifyViewCommand;
 import com.javaEdu.ex.command.find.fWriteActionCommand;
 import com.javaEdu.ex.command.find.fWriteCategoryActionCommand;
 import com.javaEdu.ex.command.member.MContentCommand;
@@ -68,44 +56,6 @@ public class BFrontController extends HttpServlet {
 		String com = uri[uri.length-1];
 		System.out.println(com);
 		
-		if(com.equals("write_view.do")) {
-			viewPage = "/board/write_view.jsp";
-			
-		} else if (com.equals("write.do")) {
-			command = new BWriteCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
-			
-		} else if (com.equals("list.do")) {
-			command = new BListCommand();
-			command.execute(request, response);
-			viewPage = "/board/list.jsp";
-			
-		} else if (com.equals("content_view.do")) {
-			command = new BContentCommand();
-			command.execute(request,response);
-			viewPage = "/board/content_view.jsp";
-			
-		} else if (com.equals("modify.do")) {
-			command = new BModifyCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
-			
-		} else if (com.equals("delete.do")) {
-			command = new BDeleteCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
-		} else if (com.equals("reply.do")) {
-			command = new BReplyCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
-			
-		} else if (com.equals("reply_view.do")) {
-			command = new BReplyViewCommand();
-			command.execute(request, response);
-			viewPage = "/board/reply_view.jsp";
-		}
-		
 //------------------member -----------------------
 		if(com.equals("membersAll.do")) {
 			command = new MPrintAll();
@@ -144,18 +94,6 @@ public class BFrontController extends HttpServlet {
 		}
 			
 		
-//------------------device---------------------
-		
-		if(com.equals("d_regist.do")) {
-			command = new DRegistCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
-		} else if (com.equals("d_regist_view.do")) {
-			command = new DRegistViewCommand();
-			command.execute(request, response);
-			viewPage = "/device/regist_view.jsp";
-		}
-		
 //------------------find---------------------
 		
 		if(com.equals("f_write_category_action.do")) {
@@ -184,34 +122,14 @@ public class BFrontController extends HttpServlet {
 			viewPage = "f_list.do";
 			
 		} else if (com.equals("f_modify_view.do")) {
-			command = new FModifyCommand();
+			command = new FModifyViewCommand();
 			command.execute(request, response);
 			viewPage = "/find/modify_view.jsp";
-//정리된것 끝
-//		} else if(com.equals("f_search.do")) {
-//			command = new DSearchCommand();
-//			command.execute(request, response);
-//			viewPage = "/find/search_action.jsp";
-//		} else if (com.equals("f_write.do")) {
-//			command = new FWriteCommand();
-//			command.execute(request, response);
-//			viewPage = "/find/write_viewOk.jsp";
-//		} else if (com.equals("f_write_view.do")) {
-//			command = new FWriteViewCommand();
-//			command.execute(request,response);
-//			viewPage = "/find/write_view.jsp";
-//		} else if (com.equals("f_modify_view.do")) {
-//			viewPage = "/find/contentModify_view.jsp";
-//		} else if (com.equals("f_modify.do")) {
-//			command = new FModifyCommand();
-//			command.execute(request, response);
-//			viewPage = "f_list.do";
-//			
-//		
-//		} else if (com.equals("f_search_list.do")) {
-//			command = new FSearchCommand();
-//			command.execute(request, response);
-//			viewPage = "/find/list_view.jsp";
+			
+		} else if (com.equals("f_modify.do")) {
+			command = new FModifyCommand();
+			command.execute(request, response);
+			viewPage = "/find/modify_action.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

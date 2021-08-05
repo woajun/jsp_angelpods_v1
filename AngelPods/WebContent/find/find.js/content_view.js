@@ -1,7 +1,7 @@
 function deleteFb(){
-	alert('a');
     if (confirm("삭제 하시겠습니까?") == true) {
-    	document.del_frm.submit();
+//    	document.del_frm.submit();
+    	alert('a');
     } else {
     	return;
     }

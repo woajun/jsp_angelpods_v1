@@ -13,21 +13,22 @@ public class MModifyCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 
-		String id = request.getSession().getAttribute("id").toString();
+		String userId = request.getSession().getAttribute("userId").toString();
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String eMail = request.getParameter("eMail");
-		String sido = request.getParameter("sido");
-		String gugun = request.getParameter("gugun") ;
-		String phone = request.getParameter("phone");
+		String addr = request.getParameter("addr");
+		String lat = request.getParameter("lat") ;
+		String lon = request.getParameter("lon");
+		String profilImage = "0";
 		
 		MemberDao dao = MemberDao.getInstance();
-		int ri = dao.modify(id, pw, name, eMail, sido, gugun, phone);
+		int ri = dao.modify(userId, pw, name, eMail, addr, 
+				 lat, lon, profilImage);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("name", name);
 		
 		request.setAttribute("ri", ri);
 	}
-
 }

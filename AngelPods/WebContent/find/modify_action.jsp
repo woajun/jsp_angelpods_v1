@@ -7,16 +7,16 @@
 	if(ri == 1) {
 %>
 	<script language = "javascript">
-		alert("게시글 등록에 성공했습니다.");
-  		document.location.href="list_view.jsp";
+		alert("게시글 수정에 성공했습니다.");
+  		document.location.href="../board/list_view.jsp";
 	</script>
 	
 <% } else if(ri == 0){ %>
 
-    	<script language = "javascript">
-    		alert("회원가입에 실패했습니다.");
-    		document.location.href="login.jsp";
-    	</script>
+   	<script language = "javascript">
+   		alert("게시글 수정에 실패했습니다.");
+   		document.location.href="../board/list_view.jsp";
+   	</script>
     	
 <% } %>
     

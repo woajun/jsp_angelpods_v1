@@ -40,9 +40,7 @@ if(request.getAttribute("f_list") == null){ %>
 		<tr>
         	<td>조회유형</td>
         	<td>
-                  <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                  <label class="btn btn-outline-secondary" for="option1">전체</label>
-                  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" checked>
                   <label class="btn btn-outline-secondary" for="option2">습득물</label>
                   <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
                   <label class="btn btn-outline-secondary" for="option3">분실물</label>
@@ -111,8 +109,9 @@ if(request.getAttribute("f_list") == null){ %>
 			<td><a class = "cdNum" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.cdNum}</a></td>
 			
 			<td><a class = "thumbnailImage" href = "f_content_view.do?fbNum=${dto.fbNum}">
-			<img src = "${directory}${dto.thumbnailImage}" width=73px height=70px></a></td>
-			
+ 			<img src = "${directory}${dto.thumbnailImage}" width=73px height=70px></a></td>
+			<%-- <img src = "${pageContext.request.contextPath}/IMAGES/${dto.thumbnailImage}" width=73px height=70px></a></td> --%>
+
 			<td><a class = "timestamp" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.timestamp}</a></td>
 			<td><a class = "addr" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.addr}</a></td>
 			<td><a class = "addrDetail" href = "f_content_view.do?fbNum=${dto.fbNum}">${dto.addrDetail}</a></td>

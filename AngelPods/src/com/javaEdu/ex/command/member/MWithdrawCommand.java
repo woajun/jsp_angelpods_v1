@@ -14,8 +14,7 @@ public class MWithdrawCommand implements Command {
 
 		MemberDao dao = MemberDao.getInstance();
 		
-		String id  = request.getParameter("id");
-		System.out.println(id);
+		String id  = request.getParameter("userId");
 		int ri = -1;
 		
 		if(dao.delete(id) == 1) ri = 1;

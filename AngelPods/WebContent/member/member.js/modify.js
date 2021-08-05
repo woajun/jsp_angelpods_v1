@@ -24,7 +24,7 @@ function infoConfirm() {
 	}
 	
 	if(document.reg_frm.name.value.length == 0) {
-		alert("이름은 필수사항입니다..");
+		alert("닉네임은 필수사항입니다..");
 		reg_frm.userId.focus();
 		return;
 	}
@@ -51,6 +51,12 @@ function updateInfoConfirm(){
 		return;
 	}
 	
+	if(document.reg_frm.name.value.length == 0) {
+		alert("닉네임은 필수사항입니다..");
+		reg_frm.userId.focus();
+		return;
+	}
+	
 	if(document.reg_frm.eMail.value.length == 0){
 		alert("메일은 필수 사항입니다.");
 		reg_frm.eMail.focus();
@@ -63,9 +69,7 @@ function updateInfoConfirm(){
 
 //------------------------------------
 
-
 var geocoder = new kakao.maps.services.Geocoder();
-
 
 var callback = function(result, status) {
 	if (status === kakao.maps.services.Status.OK) {

@@ -16,10 +16,8 @@
 	<form action = "logout.do" method = "post">
 		<input type = "submit" value = "로그아웃">
 		<input type = "button" value = "정보수정" onclick = "javascript:window.location='modify_view.do'">
-		<input type = "button" value = "회원탈퇴" onclick = "javascript:window.location='member_withdraw.do?id=${id}'">
-		<%-- <a href = "member_withdraw.do?id=${id}">회원탈퇴</a> --%>
+		<input type = "button" value = "회원탈퇴" onclick = "javascript:window.location='member_withdraw.do?userId=${userId}'" >
 		<a href = "membersAll.do">모든 회원 정보보기</a>
-		<a href = "../device/regist_view.jsp">기기 등록</a>
 		<a href = "../board/list_view.jsp">습득 게시글 보기</a>
 	</form>
 	

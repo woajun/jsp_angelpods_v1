@@ -235,7 +235,7 @@ public class MemberDao {
 		
 	}
 	
-	public MemberDto contentView(String muserId) {
+	public MemberDto contentView(String userId) {
 		MemberDto dto = new MemberDto();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -246,7 +246,7 @@ public class MemberDao {
 			
 			String query = "select * from member where userId = ?";
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, muserId);
+			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				dto.setUserId(rs.getString("userId"));
@@ -258,7 +258,7 @@ public class MemberDao {
 				dto.setRankId(rs.getInt("rankid"));
 				dto.setLat(rs.getString("lat"));
 				dto.setLon(rs.getString("lon"));
-				dto.setProfilImage(rs.getString("profileImage"));
+				dto.setProfilImage(rs.getString("profilImage"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -313,22 +313,18 @@ public class MemberDao {
 	}
 
 	public int delete(String userId) {
-		// TODO Auto-generated method stub
-		
 		int ri = -1;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = getConnection();
-			
 			String query = "delete from member where userId = ?";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, userId);
 			ri = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
 			try {
@@ -338,10 +334,6 @@ public class MemberDao {
 				e2.printStackTrace();
 			}	
 		}
-		
-		System.out.println("delete" + ri);
 		return ri;
 	}
-
-
 }

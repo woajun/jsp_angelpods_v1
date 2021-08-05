@@ -215,57 +215,6 @@ public class FindBoardDao {
 		}
 	}
 
-//	public ArrayList<FindBoardDto> searchList(String[] models, String sArea, String keyword) {
-//		// TODO Auto-generated method stub
-//		
-//		ArrayList<FDto> dtos = new ArrayList <FDto>();
-//		
-//		Connection con = null;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		
-//		try {
-//			con = dataSource.getConnection();
-//			
-//			String query = "select num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId from find_board where area = ? order by num desc";
-//			ps = con.prepareStatement(query);
-//			ps.setString(1, sArea);
-//			rs = ps.executeQuery();
-//			
-//			while(rs.next()) {
-//				int num = rs.getInt("num");
-//				String image = rs.getString("image");
-//				String model = rs.getString("model");
-//				Timestamp rdate = rs.getTimestamp("rdate");
-//				String latitude = rs.getString("latitude");
-//				String longitude = rs.getString("area");
-//				String addr = rs.getString("addr");
-//				String addrDetail = rs.getString("addrDetail");
-//				String title = rs.getString("title");
-//				String contents = rs.getString("contents");
-//				String findornot = rs.getString("findornot");
-//				String writerId = rs.getString("writerId");
-//				String deviceId = rs.getString("deviceId");
-//				
-//				FDto dto = new FDto(num, image, model, rdate, latitude, longitude, addr, addrDetail, title, contents, findornot, writerId, deviceId);
-//				dtos.add(dto);
-//			}
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if(rs != null) rs.close();
-//				if(ps != null) ps.close();
-//				if(con != null) con.close();
-//			} catch (Exception e2) {
-//				// TODO: handle exception
-//				e2.printStackTrace();
-//			}
-//		}
-//		return dtos;
-//	}
-
 	public void setThumbnailImage(int boardNum, String imageSystemName) {
 		// TODO Auto-generated method stub
 		Connection con = null;
@@ -289,4 +238,39 @@ public class FindBoardDao {
 			}
 		}
 	}
+
+	public void modify(int fbNum, int cNum, int cdNum, String imageSystemName, String addr, String addrDetail,
+			String title, String contents, String sn, String lat, String lon) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String query = "update find_board set c_num=?, cd_num=?, thumbnailimage=?, addr=?, addrdetail=?, title=?, contents=?, sn=?, lat=?, lon=? where fb_num = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cNum);
+			pstmt.setInt(2, cdNum);
+			pstmt.setString(3, imageSystemName);
+			pstmt.setString(4, addr);
+			pstmt.setString(5, addrDetail);
+			pstmt.setString(6, title);
+			pstmt.setString(7, contents);
+			pstmt.setString(8, sn);
+			pstmt.setString(9, lat);
+			pstmt.setString(10, lon);
+			pstmt.setInt(11, fbNum);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
 }

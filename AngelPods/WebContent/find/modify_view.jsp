@@ -34,7 +34,7 @@
 			
 			<tr><td colspan="2">
 				<table width="500" cellpadding="0" cellspacing ="0" border="1">
-					<tr><td>addr</td><td><input name = "addr" >${fbDto.addr}</input></td></tr>
+					<tr><td>addr</td><td><input name = "addr" value="${fbDto.addr}"></input></td></tr>
 					<tr><td>addrDetail</td><td><input name = "addrDetail" value="${fbDto.addrDetail}"></td></tr>
 					<tr><td>lat</td><td><input type="hidden" name = "lat" value="${fbDto.lat}"></td></tr>
 					<tr><td>lon</td><td><input type="hidden" name = "lon" value="${fbDto.lon}"></td></tr>

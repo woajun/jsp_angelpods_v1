@@ -40,7 +40,7 @@
 				<input type = "submit" value ="삭제" onclick="deleteFb()">
 				<a href = "f_modify_view.do?fbNum=${fbDto.fbNum}">수정</a>
 				<a href = "f_list.do">목록보기</a>
-				<a href = "f_delete.do?fbNum=${fbDto.fbNum}">채팅으로 대화하기</a>
+				<a href = "">채팅으로 대화하기</a>
 			</td></tr>
 		</table>
 	</form>

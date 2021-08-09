@@ -29,15 +29,15 @@ public class ImagesDao {
 	}
 	
 	public int imageSetDB(String imageSystemName, String imageName, int imageIndex, int boardNum) {
-		Connection conn = null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		String query = "insert into find_image values (?,?,?,?)";
 
 		int ri = 0;
 		try {
-			conn = dataSource.getConnection();
-			pstmt = conn.prepareStatement(query);
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, imageSystemName);
 			pstmt.setString(2, imageName);
 			pstmt.setInt(3, imageIndex);
@@ -49,6 +49,13 @@ public class ImagesDao {
 			System.out.println("FImageDao - DB에 이미지를 넣는것을 실패했습니다.");
 			e.printStackTrace();
 			ri = -1;
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		return ri;
 	}

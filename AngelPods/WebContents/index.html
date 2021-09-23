@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>카테고리 비동기적으로 불러오기</title>
+<!-- Bootstrap core CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+
+<input type="text" id="cate">
+
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+$('#cate').on('change', function(e) {
+	
+	let category = $('#cate').val();
+	console.log(category);
+	$.ajax({
+		type: "POST",
+		url : "cList.do",
+		dataType:'json',
+		data: {
+			"category":category
+		},
+		success: function(xhr){
+			console.log('success');
+			console.log(xhr.data);
+		},
+		error:function(xhr,status,msg){
+			console.log('error');
+			console.log(xhr);
+			console.log(xhr.data);
+			console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+		}
+	})
+	
+})
+	
+</script>
+</body>
+</html>
